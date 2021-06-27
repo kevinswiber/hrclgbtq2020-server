@@ -22,7 +22,7 @@ enum IssueKind {
   ANTI_CONVERSION_THERAPY
 }
 
-interface Issue {
+type Issue {
   id: ID!
   name: String!
   kind: IssueKind!,
