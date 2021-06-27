@@ -1,0 +1,40 @@
+type State {
+  ID: ID!
+  region: String!
+  district: String!
+  score: Score!,
+  antiLGBTQBills: AntiLGBTQBills!,
+  issues(kind: IssueKind): [Issue]
+}
+
+enum IssueKind {
+  ALL
+  TRANSGENDER_HEALTHCARE
+  SCHOOL_ANTI_BULLYING
+  PUBLIC_ACCOMMODATIONS
+  MARRIAGE_EQUALITY
+  HOUSING
+  HATE_CRIMES
+  GENDER_MARKER_UPDATES_ON_IDENTIFICATION
+  EMPLOYMENT
+  EDUCATION
+  DISCRIMINATION_IN_CHILD_WELFARE
+  ANTI_CONVERSION_THERAPY
+}
+
+interface Issue {
+  id: ID!
+  name: String!
+  kind: IssueKind!,
+  description: String!
+  value: Int!
+  associated(): [State]!
+  isStateAssociated(id: ID!): Boolean
+}
+
+type Query {
+  allStates(issueKind: [IssueKind]): [State]
+  state(id: ID!, issueKind: [IssueKind]): State
+  allIssues(): [Issue]
+  issue(id: ID!): Issue
+}
