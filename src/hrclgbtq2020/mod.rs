@@ -3,6 +3,7 @@ use std::collections::HashMap;
 use async_graphql::{EmptyMutation, EmptySubscription, Schema};
 use slab::Slab;
 
+pub use model::QueryRoot;
 pub mod model;
 
 pub type HrcLgbtq2020Schema = Schema<model::QueryRoot, EmptyMutation, EmptySubscription>;
