@@ -1,8 +1,11 @@
-mod hrclgbtq2020;
+pub mod generated;
+pub mod generator;
+pub mod schema;
+
 use async_graphql::http::{playground_source, GraphQLPlaygroundConfig};
 use async_graphql::{EmptyMutation, EmptySubscription, Schema};
 use async_std::task;
-use hrclgbtq2020::{HrcLgbtq2020, QueryRoot};
+use schema::{HrcLgbtq2020, QueryRoot};
 use std::env;
 use tide::{http::mime, Body, Response, StatusCode};
 type Result<T> = std::result::Result<T, Box<dyn std::error::Error + Send + Sync>>;

@@ -1091,7 +1091,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "hrclgbtq2020-server"
+name = "hrclgbtq2020server"
 version = "0.1.0"
 dependencies = [
  "async-graphql",
