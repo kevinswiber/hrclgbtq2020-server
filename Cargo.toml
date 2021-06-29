@@ -12,3 +12,7 @@ async-std = "1.9.0"
 csv = "1.1"
 slab = "0.4"
 tide = "0.16"
+
+[build-dependencies]
+csv = "1.1"
+serde = "1.0"

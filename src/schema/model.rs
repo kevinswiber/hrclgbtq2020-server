@@ -22,7 +22,7 @@ pub struct Issue {
     pub name: String,
     pub kind: IssueKind,
     pub description: String,
-    pub value: usize,
+    pub value: i8,
 }
 
 /// A category of reported issue.
