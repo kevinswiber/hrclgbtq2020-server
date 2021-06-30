@@ -24,7 +24,7 @@ const DATA_FILE_SUFFIX: &'static str = "        (states, state_data)
 }";
 
 fn main() -> io::Result<()> {
-    //println!("cargo:rerun-if-changed=data/states.csv");
+    println!("cargo:rerun-if-changed=data/states.csv");
     Generator::generate()
 }
 
