@@ -29,6 +29,7 @@ async fn run() -> Result<()> {
 
     let schema = Schema::build(QueryRoot, EmptyMutation, EmptySubscription)
         .data(HrcLgbtq2020::new())
+        .limit_depth(15)
         .finish();
 
     println!("Playground: http://{}", listen_addr);

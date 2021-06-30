@@ -1,5 +1,5 @@
-//use async_graphql::connection::{query, Connection, Edge, EmptyFields};
-use async_graphql::{Context, Enum, Object, SimpleObject};
+use async_graphql::connection::{query, Connection, Edge, EmptyFields};
+use async_graphql::{Context, Enum, Object, Result, SimpleObject};
 
 use super::HrcLgbtq2020;
 
@@ -81,12 +81,75 @@ impl QueryRoot {
         ctx.data_unchecked::<HrcLgbtq2020>().state(&id).map(State)
     }
 
-    async fn all_states(&self, ctx: &Context<'_>) -> Vec<State> {
-        ctx.data_unchecked::<HrcLgbtq2020>()
+    async fn states(
+        &self,
+        ctx: &Context<'_>,
+        after: Option<String>,
+        before: Option<String>,
+        first: Option<i32>,
+        last: Option<i32>,
+    ) -> Result<Connection<usize, State, EmptyFields, EmptyFields>> {
+        let states = ctx
+            .data_unchecked::<HrcLgbtq2020>()
             .state_data
             .values()
             .copied()
-            .map(|id| State(id))
-            .collect::<Vec<State>>()
+            .collect::<Vec<_>>();
+        query_states(after, before, first, last, &states)
+            .await
+            .map(|conn| conn.map_node(State))
     }
+}
+
+async fn query_states(
+    after: Option<String>,
+    before: Option<String>,
+    first: Option<i32>,
+    last: Option<i32>,
+    states: &[usize],
+) -> Result<Connection<usize, usize, EmptyFields, EmptyFields>> {
+    query(
+        after,
+        before,
+        first,
+        last,
+        |after, before, first, last| async move {
+            let mut start = 0usize;
+            let mut end = states.len();
+
+            if let Some(after) = after {
+                if after >= states.len() {
+                    return Ok(Connection::new(false, false));
+                }
+                start = after + 1;
+            }
+
+            if let Some(before) = before {
+                if before == 0 {
+                    return Ok(Connection::new(false, false));
+                }
+                end = before;
+            }
+
+            let mut slice = &states[start..end];
+
+            if let Some(first) = first {
+                slice = &slice[..first.min(slice.len())];
+                end -= first.min(slice.len());
+            } else if let Some(last) = last {
+                slice = &slice[slice.len() - last.min(slice.len())..];
+                start = end - last.min(slice.len());
+            }
+
+            let mut connection = Connection::new(start > 0, end < states.len());
+            connection.append(
+                slice
+                    .iter()
+                    .enumerate()
+                    .map(|(idx, item)| Edge::new(start + idx, *item)),
+            );
+            Ok(connection)
+        },
+    )
+    .await
 }
