@@ -61,6 +61,65 @@ impl HrcLgbtq2020 {
         });
         issue_data.insert(IssueKind::PublicAccommodations, public_accommodations);
 
+        let marriage_equality = issues.insert(Issue {
+            id: IssueKind::MarriageEquality,
+            name: "Marriage Equality & Relationship Recognition",
+            states: Vec::new(),
+        });
+        issue_data.insert(IssueKind::MarriageEquality, marriage_equality);
+
+        let housing = issues.insert(Issue {
+            id: IssueKind::Housing,
+            name: "Housing",
+            states: Vec::new(),
+        });
+        issue_data.insert(IssueKind::Housing, housing);
+
+        let hate_crimes = issues.insert(Issue {
+            id: IssueKind::HateCrimes,
+            name: "Hate Crimes",
+            states: Vec::new(),
+        });
+        issue_data.insert(IssueKind::HateCrimes, hate_crimes);
+
+        let gender_marker_updates = issues.insert(Issue {
+            id: IssueKind::GenderMarkerUpdatesOnIdentification,
+            name: "Gender Marker Updates on Identification Documents",
+            states: Vec::new(),
+        });
+        issue_data.insert(
+            IssueKind::GenderMarkerUpdatesOnIdentification,
+            gender_marker_updates,
+        );
+
+        let employment = issues.insert(Issue {
+            id: IssueKind::Employment,
+            name: "Employment",
+            states: Vec::new(),
+        });
+        issue_data.insert(IssueKind::Employment, employment);
+
+        let education = issues.insert(Issue {
+            id: IssueKind::Education,
+            name: "Education",
+            states: Vec::new(),
+        });
+        issue_data.insert(IssueKind::Education, education);
+
+        let discrimination = issues.insert(Issue {
+            id: IssueKind::DiscriminationInChildWelfare,
+            name: "Discrimination in Child Welfare Services",
+            states: Vec::new(),
+        });
+        issue_data.insert(IssueKind::DiscriminationInChildWelfare, discrimination);
+
+        let anti_conversion = issues.insert(Issue {
+            id: IssueKind::AntiConversionTherapy,
+            name: "Anti-Conversion Therapy",
+            states: Vec::new(),
+        });
+        issue_data.insert(IssueKind::AntiConversionTherapy, anti_conversion);
+
         for (_, state) in &states {
             for issue in &state.issues {
                 if let Some((_, iss)) = issues.iter_mut().find(|(_, iss)| iss.id == issue.kind) {
@@ -74,45 +133,6 @@ impl HrcLgbtq2020 {
             }
         }
 
-        /*
-                issue_data.insert(IssueKind::TransgenderHealthcare, HashMap::new());
-                issue_data.insert(IssueKind::SchoolAntiBullying, HashMap::new());
-                issue_data.insert(IssueKind::PublicAccommodations, HashMap::new());
-                issue_data.insert(IssueKind::MarriageEquality, HashMap::new());
-                issue_data.insert(IssueKind::Housing, HashMap::new());
-                issue_data.insert(IssueKind::HateCrimes, HashMap::new());
-                issue_data.insert(
-                    IssueKind::GenderMarkerUpdatesOnIdentification,
-                    HashMap::new(),
-                );
-                issue_data.insert(IssueKind::Employment, HashMap::new());
-                issue_data.insert(IssueKind::Education, HashMap::new());
-                issue_data.insert(IssueKind::DiscriminationInChildWelfare, HashMap::new());
-                issue_data.insert(IssueKind::AntiConversionTherapy, HashMap::new());
-
-                for (key, value) in state_data {
-                    match states.get(value) {
-                        None => continue,
-                        Some(state) => {
-                            for issue in state.issues {
-                                if let Some(inner) = issue_data.get_mut(&issue.kind) {
-                                    if let Some(mut v) = inner.get(&issue.policy) {
-                                        v.push(issue);
-                                    } else {
-                                        inner.insert(issue.policy, vec![issue]);
-                                    }
-                                } else {
-                                    let mut inner_hash = HashMap::new();
-                                    inner_hash.insert(issue.policy, vec![issue]);
-                                    issue_data.insert(issue.kind, inner_hash);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                //issues_data["Transgender Healthcare"]["None"] = Vec<State>
-        */
         Self {
             states,
             state_data,
