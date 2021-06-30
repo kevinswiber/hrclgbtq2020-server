@@ -22,7 +22,7 @@ async fn run() -> Result<()> {
     let listen_addr = match env::var("LISTEN_ADDR") {
         Ok(addr) => addr,
         _ => match env::var("PORT") {
-            Ok(port) => format!("localhost:{}", port),
+            Ok(port) => format!("0.0.0.0:{}", port),
             _ => "localhost:8000".to_string(),
         },
     };
