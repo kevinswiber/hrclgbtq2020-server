@@ -4,12 +4,12 @@ use std::collections::HashMap;
 
 use slab::Slab;
 
-use crate::schema::{Issue, IssueKind, Score, ScoreKind, State};
+use crate::schema::{IssueKind, Score, ScoreKind, State, StateIssue};
 
-pub struct Data;
+pub(crate) struct Data;
 
 impl Data {
-    pub fn seed() -> (Slab<State>, HashMap<&'static str, usize>) {
+    pub(crate) fn seed() -> (Slab<State>, HashMap<&'static str, usize>) {
         let mut states = Slab::new();
         let mut state_data = HashMap::new();
         let alabama = states.insert(State {
@@ -22,70 +22,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Restrict the inclusion of LGBTQ topics in schools".to_string(),
+                    policy: "Restrict the inclusion of LGBTQ topics in schools".to_string(),
                     value: -1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "Discrimination is allowed by private agencies which do not receive taxpayer funds".to_string(),
+                    policy: "Discrimination is allowed by private agencies which do not receive taxpayer funds".to_string(),
                     value: -5,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -102,70 +102,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -182,70 +182,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on driver's licenses only".to_string(),
+                    policy: "Facilitate gender marker update on driver's licenses only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 5,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -262,70 +262,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on driver's licenses only".to_string(),
+                    policy: "Facilitate gender marker update on driver's licenses only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -342,70 +342,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -422,70 +422,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -502,70 +502,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -582,70 +582,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -662,70 +662,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on driver's licenses only".to_string(),
+                    policy: "Facilitate gender marker update on driver's licenses only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 5,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -742,71 +742,71 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only"
+                    policy: "Address hate or bias crimes based on sexual orientation only"
                         .to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -823,70 +823,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare only".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -903,70 +903,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -983,70 +983,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -1063,70 +1063,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on driver's licenses only".to_string(),
+                    policy: "Facilitate gender marker update on driver's licenses only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination against public employees based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination against public employees based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -1143,70 +1143,70 @@ impl Data {
                 kind: ScoreKind::Solidifying,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -1223,70 +1223,70 @@ impl Data {
                 kind: ScoreKind::Building,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 5,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "Allows agencies to discriminate against potential parents".to_string(),
+                    policy: "Allows agencies to discriminate against potential parents".to_string(),
                     value: -1,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -1303,70 +1303,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination against public employees based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination against public employees based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -1383,71 +1383,71 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Restrict the inclusion of LGBTQ topics in schools".to_string(),
+                    policy: "Restrict the inclusion of LGBTQ topics in schools".to_string(),
                     value: -1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only"
+                    policy: "Address hate or bias crimes based on sexual orientation only"
                         .to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -1464,70 +1464,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -1544,70 +1544,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -1624,70 +1624,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -1704,70 +1704,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on driver's licenses only".to_string(),
+                    policy: "Facilitate gender marker update on driver's licenses only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination against public employees based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination against public employees based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "Allows agencies to refuse to work with potential parents and children".to_string(),
+                    policy: "Allows agencies to refuse to work with potential parents and children".to_string(),
                     value: -2,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -1784,70 +1784,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -1864,70 +1864,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Restrict the inclusion of LGBTQ topics in schools".to_string(),
+                    policy: "Restrict the inclusion of LGBTQ topics in schools".to_string(),
                     value: -1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "Allows sweeping anti-LGBTQ discrimination that includes allowing agencies to refuse to work with potential parents and children and agencies can deny children services to which the agency objects, including refusing to allow transgender people access".to_string(),
+                    policy: "Allows sweeping anti-LGBTQ discrimination that includes allowing agencies to refuse to work with potential parents and children and agencies can deny children services to which the agency objects, including refusing to allow transgender people access".to_string(),
                     value: -4,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -1944,70 +1944,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Prevents school districts from specifically protecting LGBTQ students".to_string(),
+                    policy: "Prevents school districts from specifically protecting LGBTQ students".to_string(),
                     value: -2,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on driver's licenses only".to_string(),
+                    policy: "Facilitate gender marker update on driver's licenses only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination against public employees based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination against public employees based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -2024,70 +2024,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination against public employees based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination against public employees based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -2104,70 +2104,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 5,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -2184,70 +2184,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -2264,70 +2264,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare only".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on driver's licenses only".to_string(),
+                    policy: "Facilitate gender marker update on driver's licenses only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -2344,70 +2344,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -2424,70 +2424,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare only".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "Address discrimination against students based on sexual orientation only".to_string(),
+                    policy: "Address discrimination against students based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -2504,70 +2504,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -2584,70 +2584,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on driver's licenses only".to_string(),
+                    policy: "Facilitate gender marker update on driver's licenses only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination against public employees based on sexual orientation only".to_string(),
+                    policy: "Prohibit discrimination against public employees based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -2664,70 +2664,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on driver's licenses only".to_string(),
+                    policy: "Facilitate gender marker update on driver's licenses only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 5,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "Allows agencies to discriminate against potential parents".to_string(),
+                    policy: "Allows agencies to discriminate against potential parents".to_string(),
                     value: -1,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -2744,70 +2744,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on driver's licenses only".to_string(),
+                    policy: "Facilitate gender marker update on driver's licenses only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination against public employees based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination against public employees based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -2824,71 +2824,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Restrict the inclusion of LGBTQ topics in schools".to_string(),
+                    policy: "Restrict the inclusion of LGBTQ topics in schools".to_string(),
                     value: -1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "Allows agencies to discriminate against potential parents"
-                        .to_string(),
+                    policy: "Allows agencies to discriminate against potential parents".to_string(),
                     value: -1,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -2905,70 +2904,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -2985,70 +2984,70 @@ impl Data {
                 kind: ScoreKind::Building,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 5,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -3065,70 +3064,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -3145,70 +3144,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Restrict the inclusion of LGBTQ topics in schools".to_string(),
+                    policy: "Restrict the inclusion of LGBTQ topics in schools".to_string(),
                     value: -1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -3225,70 +3224,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Prevents school districts from specifically protecting LGBTQ students".to_string(),
+                    policy: "Prevents school districts from specifically protecting LGBTQ students".to_string(),
                     value: -2,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "Allows sweeping anti-LGBTQ discrimination that includes allowing agencies to refuse to work with potential parents and children and agencies can deny children services to which the agency objects, including refusing to allow transgender people access".to_string(),
+                    policy: "Allows sweeping anti-LGBTQ discrimination that includes allowing agencies to refuse to work with potential parents and children and agencies can deny children services to which the agency objects, including refusing to allow transgender people access".to_string(),
                     value: -4,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -3305,72 +3304,71 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only"
+                    policy: "Address hate or bias crimes based on sexual orientation only"
                         .to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "Allows agencies to discriminate against potential parents"
-                        .to_string(),
+                    policy: "Allows agencies to discriminate against potential parents".to_string(),
                     value: -1,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -3387,70 +3385,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Restrict the inclusion of LGBTQ topics in schools".to_string(),
+                    policy: "Restrict the inclusion of LGBTQ topics in schools".to_string(),
                     value: -1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 5,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "Allows sweeping anti-LGBTQ discrimination that includes allowing agencies to refuse to work with potential parents and children and agencies can deny children services to which the agency objects, including refusing to allow transgender people access".to_string(),
+                    policy: "Allows sweeping anti-LGBTQ discrimination that includes allowing agencies to refuse to work with potential parents and children and agencies can deny children services to which the agency objects, including refusing to allow transgender people access".to_string(),
                     value: -4,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -3467,70 +3465,70 @@ impl Data {
                 kind: ScoreKind::Building,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -3547,70 +3545,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on driver's licenses only".to_string(),
+                    policy: "Facilitate gender marker update on driver's licenses only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -3627,70 +3625,70 @@ impl Data {
                 kind: ScoreKind::Solidifying,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare only".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "Allows agencies to discriminate against potential parents".to_string(),
+                    policy: "Allows agencies to discriminate against potential parents".to_string(),
                     value: -1,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -3707,70 +3705,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation and gender identity".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -3787,70 +3785,70 @@ impl Data {
                 kind: ScoreKind::Innovative,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
+                    policy: "Address harassment and/or bullying of students based on sexual orientation and gender identity".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 3,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
+                    policy: "Enforcement authorities are accepting complaints on the basis of sexual orientation and gender identity because the state has adopted the Bostock rationale into state law".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
+                    policy: "Facilitate gender marker update on both birth certificates and driver's licenses".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation and gender identity".to_string(),
                     value: 6,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
+                    policy: "State Protects Youth From So-Called \"Conversion Therapy\"".to_string(),
                     value: 1,
                 },
             ],
@@ -3867,71 +3865,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "Facilitate gender marker update on driver's licenses only"
-                        .to_string(),
+                    policy: "Facilitate gender marker update on driver's licenses only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -3948,70 +3945,70 @@ impl Data {
                 kind: ScoreKind::Building,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
+                    policy: "Bans insurance exclusions for transgender healthcare and also has protections for transgender healthcare in state Medicaid".to_string(),
                     value: 2,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "Prohibit discrimination based on sexual orientation only".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "Prohibit discrimination based on sexual orientation only".to_string(),
+                    policy: "Prohibit discrimination based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "Address hate or bias crimes based on sexual orientation only".to_string(),
+                    policy: "Address hate or bias crimes based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "Address discrimination against students based on sexual orientation only".to_string(),
+                    policy: "Address discrimination against students based on sexual orientation only".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],
@@ -4028,70 +4025,70 @@ impl Data {
                 kind: ScoreKind::HighPriority,
             },
             issues: vec![
-                Issue {
+                StateIssue {
                     name: "Transgender Healthcare".to_string(),
                     kind: IssueKind::TransgenderHealthcare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "School Anti-Bullying".to_string(),
                     kind: IssueKind::SchoolAntiBullying,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Public Accommodations".to_string(),
                     kind: IssueKind::PublicAccommodations,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Marriage Equality & Relationship Recognition".to_string(),
                     kind: IssueKind::MarriageEquality,
-                    description: "Issue marriage licenses to same-sex couples".to_string(),
+                    policy: "Issue marriage licenses to same-sex couples".to_string(),
                     value: 1,
                 },
-                Issue {
+                StateIssue {
                     name: "Housing".to_string(),
                     kind: IssueKind::Housing,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Hate Crimes".to_string(),
                     kind: IssueKind::HateCrimes,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Gender Marker Updates on Identification Documents".to_string(),
                     kind: IssueKind::GenderMarkerUpdatesOnIdentification,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Employment".to_string(),
                     kind: IssueKind::Employment,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Education".to_string(),
                     kind: IssueKind::Education,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Discrimination in Child Welfare Services".to_string(),
                     kind: IssueKind::DiscriminationInChildWelfare,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
-                Issue {
+                StateIssue {
                     name: "Anti-Conversion Therapy".to_string(),
                     kind: IssueKind::AntiConversionTherapy,
-                    description: "None".to_string(),
+                    policy: "None".to_string(),
                     value: 0,
                 },
             ],

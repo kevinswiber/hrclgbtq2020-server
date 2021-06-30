@@ -10,12 +10,12 @@ use std::collections::HashMap;
 
 use slab::Slab;
 
-use crate::schema::{Issue, IssueKind, Score, ScoreKind, State};
+use crate::schema::{StateIssue, IssueKind, Score, ScoreKind, State};
 
-pub struct Data;
+pub(crate) struct Data;
 
 impl Data {
-    pub fn seed() -> (Slab<State>, HashMap<&'static str, usize>) {
+    pub(crate) fn seed() -> (Slab<State>, HashMap<&'static str, usize>) {
         let mut states = Slab::new();
         let mut state_data = HashMap::new();
 ";
@@ -210,10 +210,10 @@ impl Generator {
             issue_vec.push_str(iss_prefix);
             for issue in issues {
                 let issue_code = format!(
-                    "                Issue {{
+                    "                StateIssue {{
                     name: \"{}\".to_string(),
                     kind: IssueKind::{},
-                    description: \"{}\".to_string(),
+                    policy: \"{}\".to_string(),
                     value: {},
                 }},\n",
                     issue.0,

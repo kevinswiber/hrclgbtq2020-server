@@ -1,5 +1,5 @@
-pub mod generated;
-pub mod schema;
+pub(crate) mod generated;
+pub(crate) mod schema;
 
 use async_graphql::http::{playground_source, GraphQLPlaygroundConfig};
 use async_graphql::{EmptyMutation, EmptySubscription, Schema};
