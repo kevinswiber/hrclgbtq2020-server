@@ -22,7 +22,7 @@ pub struct State {
 pub struct HrcLgbtq2020 {
     states: Slab<State>,
     state_data: HashMap<&'static str, usize>,
-    issue_data: HashMap<&'static str, usize>,
+    //issue_data: HashMap<&'static str, usize>,
 }
 
 impl HrcLgbtq2020 {
@@ -32,7 +32,7 @@ impl HrcLgbtq2020 {
         Self {
             states,
             state_data,
-            issue_data: HashMap::new(),
+            //issue_data: HashMap::new(),
         }
     }
 

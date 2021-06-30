@@ -1,5 +1,4 @@
 pub mod generated;
-pub mod generator;
 pub mod schema;
 
 use async_graphql::http::{playground_source, GraphQLPlaygroundConfig};

@@ -1,5 +1,5 @@
-use async_graphql::connection::{query, Connection, Edge, EmptyFields};
-use async_graphql::{Context, Enum, Object, Result, SimpleObject};
+//use async_graphql::connection::{query, Connection, Edge, EmptyFields};
+use async_graphql::{Context, Enum, Object, SimpleObject};
 
 use super::HrcLgbtq2020;
 
