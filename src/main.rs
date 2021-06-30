@@ -19,7 +19,13 @@ fn main() -> Result<()> {
 }
 
 async fn run() -> Result<()> {
-    let listen_addr = env::var("LISTEN_ADDR").unwrap_or_else(|_| "localhost:8000".to_owned());
+    let listen_addr = match env::var("LISTEN_ADDR") {
+        Ok(addr) => addr,
+        _ => match env::var("PORT") {
+            Ok(port) => format!("localhost:{}", port),
+            _ => "localhost:8000".to_string(),
+        },
+    };
 
     let schema = Schema::build(QueryRoot, EmptyMutation, EmptySubscription)
         .data(HrcLgbtq2020::new())
