@@ -1,4 +1,4 @@
-# hrclgbtqserver2020
+# hrclgbtq2020-server
 
 This is a GraphQL server driven by data from the [Human Rights Campaign - State Equality Index 2020 Report](https://www.hrc.org/resources/state-equality-index).
 
