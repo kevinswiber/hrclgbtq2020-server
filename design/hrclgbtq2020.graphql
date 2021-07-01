@@ -1,14 +1,32 @@
-type State {
-  ID: ID!
-  region: String!
-  district: String!
-  score: Score!,
-  antiLGBTQBills: AntiLGBTQBills!,
-  issues(kind: IssueKind): [Issue]
+schema {
+  query: QueryRoot
 }
 
+type Issue {
+  id: IssueKind!
+  name: String!
+  states: [IssueState!]!
+}
+
+type IssueConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [IssueEdge]
+}
+
+# An edge in a connection.
+type IssueEdge {
+  # The item at the end of the edge
+  node: Issue!
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+# A category of reported issue.
 enum IssueKind {
-  ALL
   TRANSGENDER_HEALTHCARE
   SCHOOL_ANTI_BULLYING
   PUBLIC_ACCOMMODATIONS
@@ -22,19 +40,76 @@ enum IssueKind {
   ANTI_CONVERSION_THERAPY
 }
 
-type Issue {
-  id: ID!
+type IssueState {
+  id: String!
   name: String!
-  kind: IssueKind!,
-  description: String!
+  policy: String!
   value: Int!
-  associated(): [State]!
-  isStateAssociated(id: ID!): Boolean
 }
 
-type Query {
-  allStates(issueKind: [IssueKind]): [State]
-  state(id: ID!, issueKind: [IssueKind]): State
-  allIssues(): [Issue]
-  issue(id: ID!): Issue
+# Information about pagination in a connection
+type PageInfo {
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+}
+
+type QueryRoot {
+  state(id: String!): State
+  issue(id: IssueKind!): Issue
+  states(after: String, before: String, first: Int, last: Int): StateConnection!
+  issues(after: String, before: String, first: Int, last: Int): IssueConnection!
+}
+
+type Score {
+  kind: ScoreKind!
+  description: String!
+}
+
+enum ScoreKind {
+  INNOVATIVE
+  SOLIDIFYING
+  BUILDING
+  HIGH_PRIORITY
+}
+
+type State {
+  id: String!
+  name: String!
+  region: String!
+  district: String!
+  score: Score!
+  issues: [StateIssue!]!
+}
+
+type StateConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [StateEdge]
+}
+
+# An edge in a connection.
+type StateEdge {
+  # The item at the end of the edge
+  node: State!
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+type StateIssue {
+  name: String!
+  kind: IssueKind!
+  policy: String!
+  value: Int!
 }
