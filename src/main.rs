@@ -6,7 +6,7 @@ use async_graphql::{EmptyMutation, EmptySubscription, Schema};
 use async_std::task;
 use schema::{HrcLgbtq2020, QueryRoot};
 use std::env;
-use tide::{http::mime, Body, Response, StatusCode};
+use tide::{http::mime, security::CorsMiddleware, Body, Redirect, Response, StatusCode};
 type Result<T> = std::result::Result<T, Box<dyn std::error::Error + Send + Sync>>;
 
 #[derive(Clone)]
@@ -36,13 +36,17 @@ async fn run() -> Result<()> {
 
     let mut app = tide::new();
 
-    app.at("/graphql")
-        .post(async_graphql_tide::endpoint(schema));
+    app.with(CorsMiddleware::new());
+
+    // Moving from /graphql to /api permanently.
+    app.at("/graphql").all(Redirect::permanent("/api"));
+
+    app.at("/api").post(async_graphql_tide::endpoint(schema));
 
     app.at("/").get(|_| async move {
         let mut resp = Response::new(StatusCode::Ok);
         resp.set_body(Body::from_string(playground_source(
-            GraphQLPlaygroundConfig::new("/graphql"),
+            GraphQLPlaygroundConfig::new("/api"),
         )));
         resp.set_content_type(mime::HTML);
         Ok(resp)
