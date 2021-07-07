@@ -193,8 +193,9 @@ const RadialChart = (props) => {
     g
       .append('path')
       .attr('d', arc)
+      .attr('stroke', 'white')
       .attr('fill', (d) => color(d.category))
-      .attr('fill-opacity', (d) => (policy_values[d.category].indexOf(d.value) + 1) * .35);
+      .attr('fill-opacity', (d) => (policy_values[d.category].indexOf(d.value) + 1) * .2);
 
     g.append('title').text((d) => `${d.state}: ${d.category}, ${d.status} `);
 
