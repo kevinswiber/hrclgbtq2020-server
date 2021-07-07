@@ -28,10 +28,10 @@ async fn run() -> Result<()> {
 
     app.with(CorsMiddleware::new());
 
-    app.at("/").serve_file("public/index.html")?;
-    app.at("/images/*").serve_dir("public/images/")?;
-    app.at("/js/*").serve_dir("public/js/")?;
-    app.at("/css/*").serve_dir("public/css/")?;
+    //app.at("/").serve_file("public/index.html")?;
+    //app.at("/images/*").serve_dir("public/images/")?;
+    //app.at("/js/*").serve_dir("public/js/")?;
+    //app.at("/css/*").serve_dir("public/css/")?;
 
     app.at("/api-explorer").get(|_| async move {
         let mut resp = Response::new(StatusCode::Ok);
