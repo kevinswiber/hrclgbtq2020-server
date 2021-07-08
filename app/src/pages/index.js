@@ -30,14 +30,14 @@ const RadialChart = (props) => {
 
     const x = d3
       .scaleBand()
-      .domain(states.map(d => d.name))
+      .domain(states.map(d => d.id))
       .range([rotation, 2 * Math.PI + rotation]);
 
     const regions = d3
       .groups(states, (d) => d.region)
       .map(([region, states]) => {
-        const startAngle = x(states[0].name);
-        const endAngle = x(states[states.length - 1].name) + x.bandwidth();
+        const startAngle = x(states[0].id);
+        const endAngle = x(states[states.length - 1].id) + x.bandwidth();
         const labelAngle = ((startAngle + endAngle) / 2 - Math.PI / 2) % (Math.PI * 2);
 
         return {
@@ -73,17 +73,12 @@ const RadialChart = (props) => {
       .domain([0, categories.length])
       .range([innerRadius, outerRadius]);
 
-    const z = d3
-      .scaleOrdinal()
-      .domain(states)
-      .range(['#98abc5', '#8a89a6', '#7b6888']);
-
     const arc = d3
       .arc()
       .innerRadius((d) => y(categoryOrder.indexOf(d.category)))
       .outerRadius((d) => y(categoryOrder.indexOf(d.category) + 1))
-      .startAngle((d) => x(d.state))
-      .endAngle((d) => x(d.state) + x.bandwidth())
+      .startAngle((d) => x(d.abbreviation))
+      .endAngle((d) => x(d.abbreviation) + x.bandwidth())
       .padRadius(innerRadius);
 
     const color = d3
@@ -130,8 +125,6 @@ const RadialChart = (props) => {
       .startAngle(d => d.startAngle)
       .endAngle(d => d.endAngle);
 
-    console.log('label arc:', labelArc(regions[0]));
-
     const regionLabels = (g) => {
       const shouldFlip = (angle) => angle > 0 && angle < Math.PI;
       g.selectAll('path')
@@ -167,10 +160,10 @@ const RadialChart = (props) => {
         .data(states)
         .join('text')
         .attr('x', d =>
-          labelX(x(d.name) + x.bandwidth() / 2 - Math.PI / 2, outerRadius + 16)
+          labelX(x(d.id) + x.bandwidth() / 2 - Math.PI / 2, outerRadius + 16)
         )
         .attr('y', d =>
-          labelY(x(d.name) + x.bandwidth() / 2 - Math.PI / 2, outerRadius + 16)
+          labelY(x(d.id) + x.bandwidth() / 2 - Math.PI / 2, outerRadius + 16)
         )
         .attr('dy', '0.31em')
         .text(d => d.id);
