@@ -11,6 +11,9 @@ const HomePage = ({ data }) => {
             <li>
               <a href="/all-states">State Equality Index 2020 - All States</a>
             </li>
+            <li>
+              <a href="/all-states-declarative">State Equality Index 2020 - All States (Declarative)</a>
+            </li>
           </ul>
         </div>
       </div>
