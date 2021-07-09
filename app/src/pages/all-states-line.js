@@ -1,24 +1,23 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { RadialChartDeclarative } from '../components/RadialChartDeclarative';
+import { LineChart } from '../components/LineChart';
 
-const AllStatesDeclarativePage = ({ data }) => {
+const AllStatesLinePage = ({ data }) => {
   return (
     <main>
       <div className="md:container md:mx-auto">
         <h1>State Equality Index 2020 - All States</h1>
-        <RadialChartDeclarative
-          states={data.sei.states.edges}
-          issues={data.sei.issues.edges} />
+        <LineChart
+          states={data.sei.states.edges} />
       </div>
     </main>
   )
 };
 
-export default AllStatesDeclarativePage;
+export default AllStatesLinePage;
 
 export const query = graphql`
-  query AllStatesDeclarativePageQuery {
+  query AllStatesLinePageQuery {
     sei {
       states {
         edges {
@@ -30,17 +29,6 @@ export const query = graphql`
               kind
               name
               policy
-              value
-            }
-          }
-        }
-      }
-      issues {
-        edges {
-          node {
-            id
-            name
-            states {
               value
             }
           }

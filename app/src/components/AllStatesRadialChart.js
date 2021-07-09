@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as d3 from 'd3';
 
-export const RadialChartDeclarative = (props) => {
+export const AllStatesRadialChart = (props) => {
   const width = 1024;
   const height = width;
   const innerRadius = 210;
@@ -12,7 +12,12 @@ export const RadialChartDeclarative = (props) => {
   let policy_values = {};
 
   for (const issue of props.issues) {
-    policy_values[issue.node.name] = issue.node.states.map((s) => s.value)
+    policy_values[issue.node.name] = issue.node.states
+      .map((s) => Number(s.value))
+      .sort();
+
+    policy_values[issue.node.name] = [...new Set(policy_values[issue.node.name])];
+
     issues[issue.node.id] = issue.node.name;
   }
 
@@ -98,7 +103,7 @@ export const RadialChartDeclarative = (props) => {
   const shouldFlip = (angle) => angle > 0 && angle < Math.PI;
 
   return (
-    <div id="chart">
+    <div id="radial-chart">
       <svg
         style={{ width: '100%', height: 'auto', font: '14px sans-serif', padding: '20px' }}
         viewBox={`${-width / 2}, ${-height / 2}, ${width}, ${height}`}
@@ -112,7 +117,7 @@ export const RadialChartDeclarative = (props) => {
                   d={arc(d)}
                   stroke="white"
                   fill={color(d.category)}
-                  fillOpacity={(policy_values[d.category].indexOf(d.value) + 1) * .2} />
+                  fillOpacity={((policy_values[d.category].indexOf(d.value) + 1) / policy_values[d.category].length) * .9} />
                 <title>{`${d.state}: ${d.category}, ${d.status}`}</title>
               </g >
             );

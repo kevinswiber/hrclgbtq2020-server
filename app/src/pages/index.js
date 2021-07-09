@@ -9,10 +9,10 @@ const HomePage = ({ data }) => {
         <div className="divide-y divide-gray-100">
           <ul>
             <li>
-              <a href="/all-states">State Equality Index 2020 - All States</a>
+              <a href="/all-states">All States</a>
             </li>
             <li>
-              <a href="/all-states-declarative">State Equality Index 2020 - All States (Declarative)</a>
+              <a href="/issues-by-state">Issues by State</a>
             </li>
           </ul>
         </div>
