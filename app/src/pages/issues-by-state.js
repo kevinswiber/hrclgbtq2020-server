@@ -7,7 +7,6 @@ const IssuesByStatePage = (props) => {
   const current = props.location.hash.length ?
     props.location.hash.slice(1).toUpperCase() :
     null;
-  console.log(current);
 
   return (
     <main>
