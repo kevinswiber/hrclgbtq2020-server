@@ -31,7 +31,7 @@ function center(scale, offset) {
 }
 
 export const AxisDomain = ({ orient, scale, tickSize, ...pathAttrs }) => {
-  tickSize = (tickSize == null || tickSize == undefined) ? 6 : tickSize;
+  tickSize = (tickSize === null || tickSize === undefined) ? 6 : tickSize;
   const offset = typeof window !== 'undefined' && window.devicePixelRatio > 1 ? 0 : 0.5;
   const k = orient === top || orient === left ? -1 : 1;
 

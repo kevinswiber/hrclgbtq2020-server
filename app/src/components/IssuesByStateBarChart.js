@@ -1,39 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import * as d3 from 'd3';
 import { AxisDomain, Tick, Orientation, TickLine, TickText } from './d3/Axis';
 
-export const IssuesByStateBarChart = (props) => {
-  const [current, setCurrent] = useState(props.current || 'choose');
-
-  useEffect(() => {
-    window.location.hash = `#${current}`;
-  });
-
-  const sorted = props.states.sort((a, b) => d3.ascending(a.name, b.name));
-  const change = (event) => {
-    setCurrent(event.target.value);
-  };
-
-  const select = (
-    <select onChange={change} value={current}>
-      <option value="choose">-- Choose a state --</option>
-      {sorted.map((d) => {
-        return (
-          <option key={d.id} value={d.id} >{d.name}</option>
-        )
-      })}
-    </select>
-  );
-
-  if (current.toLowerCase() === 'choose') {
-    return (
-      <div id="issues-by-state-chart">
-        {select}
-      </div>
-    );
-  }
-
-  const data = props.states.find((s) => s.id === current).issues;
+export const IssuesByStateBarChart = ({ data }) => {
   const margin = { top: 30, right: 60, bottom: 10, left: 60 };
   const barHeight = 25;
   const height = Math.ceil((data.length + 0.1) * barHeight) + margin.top + margin.bottom;
@@ -60,7 +29,6 @@ export const IssuesByStateBarChart = (props) => {
 
   return (
     <div id="issues-by-state-chart">
-      {select}
       <svg viewBox={`0,0,${width},${height}`}>
         <g key="bars">
           {data.map((d, i) => {

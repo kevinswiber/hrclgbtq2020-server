@@ -4,6 +4,8 @@ module.exports = {
     title: '2020 LGBTQ+ Rights Visualizations',
   },
   plugins: [
+    'gatsby-theme-material-ui',
+    'gatsby-plugin-material-ui',
     'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-plugin-google-analytics',
