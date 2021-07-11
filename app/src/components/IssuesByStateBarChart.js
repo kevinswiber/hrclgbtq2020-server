@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import * as d3 from 'd3';
-import { Axis, AxisDomain, Tick, Orientation, TickLine, TickText } from './Axis';
+import { AxisDomain, Tick, Orientation, TickLine, TickText } from './d3/Axis';
 
 export const IssuesByStateBarChart = (props) => {
   const [current, setCurrent] = useState(props.current || 'choose');
-
-  const margin = { top: 30, right: 60, bottom: 10, left: 60 };
-  const barHeight = 25;
-  const height = Math.ceil((data.length + 0.1) * barHeight) + margin.top + margin.bottom;
-  const width = 900
 
   useEffect(() => {
     window.location.hash = `#${current}`;
@@ -39,6 +34,10 @@ export const IssuesByStateBarChart = (props) => {
   }
 
   const data = props.states.find((s) => s.id === current).issues;
+  const margin = { top: 30, right: 60, bottom: 10, left: 60 };
+  const barHeight = 25;
+  const height = Math.ceil((data.length + 0.1) * barHeight) + margin.top + margin.bottom;
+  const width = 900
 
   let xDomain = d3.extent(data, (d) => d.value);
   if (xDomain[0] > -2) {
