@@ -8,16 +8,8 @@ export const IssuesByStateBarChart = ({ data }) => {
   const height = Math.ceil((data.length + 0.1) * barHeight) + margin.top + margin.bottom;
   const width = 900
 
-  let xDomain = d3.extent(data, (d) => d.value);
-  if (xDomain[0] > -2) {
-    xDomain[0] = -2;
-  }
-  if (xDomain[1] < 2) {
-    xDomain[1] = 2;
-  }
-
   const x = d3.scaleLinear()
-    .domain(xDomain)
+    .domain([-6, 6])
     .rangeRound([margin.left, width - margin.right]);
 
   const y = d3.scaleBand()
@@ -26,6 +18,9 @@ export const IssuesByStateBarChart = ({ data }) => {
     .padding(0.1);
 
   const yTickFormat = (i) => data[i].name;
+
+  const xTickLabels = ['Worse', 'Better'];
+  const xTickFormat = (i) => xTickLabels[x.domain().indexOf(i)];
 
   return (
     <div id="issues-by-state-chart">
@@ -101,7 +96,7 @@ export const IssuesByStateBarChart = ({ data }) => {
               <Tick
                 orient={orient} scale={x}
                 value={d}
-                key={data[i].kind}
+                key={`x-axis-${d}`}
                 line={
                   <TickLine orient={orient} />
                 }
@@ -110,7 +105,7 @@ export const IssuesByStateBarChart = ({ data }) => {
                     orient={orient}
                     value={d}
                     scale={x}
-                    ticks={[x.domain()[1] - x.domain()[0]]} />
+                    tickFormat={xTickFormat} />
                 }
               />
             );
