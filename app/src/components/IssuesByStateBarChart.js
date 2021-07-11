@@ -4,21 +4,13 @@ import { Axis, AxisDomain, Tick, Orientation, TickLine, TickText } from './Axis'
 
 export const IssuesByStateBarChart = (props) => {
   const [current, setCurrent] = useState(props.current || 'choose');
-  const ref = React.createRef();
+
+  const margin = { top: 30, right: 60, bottom: 10, left: 60 };
+  const barHeight = 25;
+  const height = Math.ceil((data.length + 0.1) * barHeight) + margin.top + margin.bottom;
+  const width = 900
 
   useEffect(() => {
-    /*d3.select('#issues-by-state-chart svg')
-      .append('g')
-      .call(d3.axisLeft(y)
-        .tickFormat((i) => data[i].name)
-        .tickSize(0)
-        .tickPadding(5))
-      .call((g) => g.selectAll('.tick')
-        .attr('key', (i) => `${data[i].kind}`))
-      .call((g) => g.selectAll('.tick text')
-        .filter(i => data[i].value <= 0)
-        .attr('text-anchor', 'start')
-        .attr('x', 6));*/
     window.location.hash = `#${current}`;
   });
 
@@ -48,11 +40,6 @@ export const IssuesByStateBarChart = (props) => {
 
   const data = props.states.find((s) => s.id === current).issues;
 
-  const margin = { top: 30, right: 60, bottom: 10, left: 60 };
-  const barHeight = 25;
-  const height = Math.ceil((data.length + 0.1) * barHeight) + margin.top + margin.bottom;
-  const width = 900
-
   let xDomain = d3.extent(data, (d) => d.value);
   if (xDomain[0] > -2) {
     xDomain[0] = -2;
@@ -70,17 +57,12 @@ export const IssuesByStateBarChart = (props) => {
     .rangeRound([margin.top, height - margin.bottom])
     .padding(0.1);
 
-  const xAxis = (g) => g
-    .attr('transform', `translate(0,${margin.top})`)
-    .call(d3.axisTop(x)
-      .ticks(x.domain()[1] - x.domain()[0])
-    ).call((g) => g.select('.domain').remove());
-
   const yTickFormat = (i) => data[i].name;
+
   return (
     <div id="issues-by-state-chart">
       {select}
-      <svg viewBox={`0,0,${width},${height}`} ref={ref}>
+      <svg viewBox={`0,0,${width},${height}`}>
         <g key="bars">
           {data.map((d, i) => {
             let width = Math.abs(x(d.value) - x(0));
