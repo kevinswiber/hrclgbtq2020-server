@@ -35,7 +35,7 @@ const IssuesByStatePage = (props) => {
 
   const select = (
     <FormControl className={classes.formControl}>
-      <InputLabel labelId="state-select" id="state-label">State</InputLabel>
+      <InputLabel labelid="state-select" id="state-label">State</InputLabel>
       <Select id='state-select' onChange={change} value={current}>
         {sorted.map((d) => <MenuItem key={d.id} value={d.id} >{d.name}</MenuItem>)}
       </Select>

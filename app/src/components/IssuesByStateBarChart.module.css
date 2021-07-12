@@ -1,0 +1,8 @@
+.bar {
+  transition: x 500ms, width 500ms, fill 500ms;
+  pointer-events: all;
+}
+
+.issue {
+  transition: transform 500ms;
+}

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as d3 from 'd3';
 import { AxisDomain, Tick, Orientation, TickLine, TickText } from './d3/Axis';
+import { bar, issue } from './IssuesByStateBarChart.module.css'
 
 export const IssuesByStateBarChart = ({ data }) => {
   const margin = { top: 30, right: 60, bottom: 10, left: 60 };
@@ -35,10 +36,12 @@ export const IssuesByStateBarChart = ({ data }) => {
             return (
               <g key={d.kind}>
                 <rect
+                  className={bar}
                   fill={d3.schemeSet1[d.value >= 0 ? 1 : 0]}
                   x={x(Math.min(d.value, 0))}
                   y={y(i)}
                   width={width}
+                  style={{ width: `${width}` }}
                   height={y.bandwidth()} />
                 <title>{d.policy}</title>
               </g>
@@ -49,7 +52,7 @@ export const IssuesByStateBarChart = ({ data }) => {
         <g
           transform={`translate(${x(0)},0)`}
           fill="none"
-          fontSize="10"
+          fontSize="12"
           fontFamily="sans-serif"
           textAnchor="end">
           <AxisDomain orient={Orientation.LEFT} tickSize="0" scale={y} />
@@ -74,6 +77,7 @@ export const IssuesByStateBarChart = ({ data }) => {
                     orient={orient}
                     tickSize="0"
                     tickPadding="5"
+                    className={issue}
                     value={d}
                     scale={y}
                     tickFormat={yTickFormat}

@@ -71768,7 +71768,7 @@ function warning(condition, message) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"lgbtq-state-equality-index","version":"1.0.0","private":true,"description":"LGBTQ+ State Equality Index","author":"Kevin Swiber","keywords":["gatsby"],"scripts":{"develop":"gatsby develop","start":"gatsby develop","build":"gatsby build","serve":"gatsby serve","clean":"gatsby clean"},"dependencies":{"@material-ui/core":"^4.12.1","@material-ui/icons":"^4.11.2","d3":"^7.0.0","gatsby":"^3.8.1","gatsby-material-ui-components":"^2.0.1","gatsby-plugin-google-analytics":"^3.8.0","gatsby-plugin-material-ui":"^3.0.1","gatsby-source-graphql":"^3.9.0","gatsby-theme-material-ui":"^2.0.1","react":"^17.0.1","react-dom":"^17.0.1"},"devDependencies":{"autoprefixer":"^10.2.6","gatsby-plugin-postcss":"^4.8.0","postcss":"^8.3.5","tailwindcss":"^2.2.4"}}');
+module.exports = JSON.parse('{"name":"lgbtq-state-equality-index","version":"1.0.0","private":true,"description":"LGBTQ+ State Equality Index","author":"Kevin Swiber","keywords":["gatsby"],"scripts":{"develop":"gatsby develop","start":"gatsby develop","build":"gatsby build","serve":"gatsby serve","clean":"gatsby clean"},"dependencies":{"@material-ui/core":"^4.12.1","@material-ui/icons":"^4.11.2","d3":"^7.0.0","gatsby":"^3.8.1","gatsby-material-ui-components":"^2.0.1","gatsby-plugin-google-analytics":"^3.8.0","gatsby-plugin-material-ui":"^3.0.1","gatsby-source-graphql":"^3.9.0","gatsby-theme-material-ui":"^2.0.1","react":"^17.0.1","react-dom":"^17.0.1"},"devDependencies":{"autoprefixer":"^10.2.6","gatsby-plugin-postcss":"^4.8.0","postcss":"^8.3.5"}}');
 
 /***/ }),
 
