@@ -1,5 +1,6 @@
 .bar {
-  transition: x 500ms, width 500ms, fill 500ms;
+  /*transition: x 500ms, width 500ms, fill 500ms;*/
+  transition: all 500ms;
   pointer-events: all;
 }
 
@@ -8,6 +9,7 @@
 }
 
 .tooltip {
+  transition: opacity 500ms, height 500ms;
   pointer-events: none;
   position: fixed;
   padding: 10px;

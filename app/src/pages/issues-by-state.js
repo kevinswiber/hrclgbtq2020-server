@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   tableContainer: {
-    marginTop: 60,
+    marginTop: 20,
     marginBottom: 120
   },
   table: {

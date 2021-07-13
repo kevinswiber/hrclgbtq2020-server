@@ -32,12 +32,12 @@ export const IssuesByStateBarChart = ({ data }) => {
   const xTickLabels = ['Anti-LGBTQ', 'Pro-LGBTQ'];
   const xTickFormat = (i) => xTickLabels[x.domain().indexOf(i)];
 
-  const toggleTooltip = (text) => {
+  const toggleTooltip = (text, options = {}) => {
     return (ev) => {
-      const opacity = text ? 1 : 0;
+      const opacity = options.hide ? 0 : 1;
       setTooltip((prevTooltip) =>
         ({ ...prevTooltip, style: { ...prevTooltip.style, opacity }, text }));
-    }
+    };
   };
 
   const placeTooltip = (ev) => {
@@ -64,14 +64,14 @@ export const IssuesByStateBarChart = ({ data }) => {
               <g key={d.kind}>
                 <rect
                   className={styles.bar}
+                  style={{ width, transitionDelay: `${i * 20}ms` }}
                   onMouseOver={toggleTooltip(d.policy)}
                   onMouseMove={placeTooltip}
-                  onMouseOut={toggleTooltip()}
+                  onMouseOut={toggleTooltip(d.policy, { hide: true })}
                   fill={d3.schemeSet1[d.value >= 0 ? 1 : 0]}
                   x={x(Math.min(d.value, 0))}
                   y={y(i)}
                   width={width}
-                  style={{ width: `${width}` }}
                   height={y.bandwidth()} />
                 {/*<title>{d.policy}</title>*/}
               </g>
