@@ -5,9 +5,11 @@ import * as styles from './IssuesByStateBarChart.module.css'
 
 export const IssuesByStateBarChart = ({ data }) => {
   const [tooltip, setTooltip] = useState({
-    left: 0,
-    top: 0,
-    opacity: 0,
+    style: {
+      left: 0,
+      top: 0,
+      opacity: 0,
+    },
     text: ''
   });
 
@@ -33,19 +35,23 @@ export const IssuesByStateBarChart = ({ data }) => {
   const toggleTooltip = (text) => {
     return (ev) => {
       const opacity = text ? 1 : 0;
-      setTooltip({ opacity, text });
+      setTooltip((prevTooltip) =>
+        ({ ...prevTooltip, style: { ...prevTooltip.style, opacity }, text }));
     }
   };
 
   const placeTooltip = (ev) => {
     const left = ev.clientX + 20;
     const top = ev.clientY;
-    setTooltip({ ...tooltip, left, top });
+    setTooltip((prevTooltip) =>
+      ({ ...prevTooltip, style: { ...prevTooltip.style, left, top } }));
   };
 
   return (
     <div id="issues-by-state-chart">
-      <div id="tooltip" className={styles.tooltip} style={{ left: tooltip.left, top: tooltip.top, opacity: tooltip.opacity }}>{tooltip.text}</div>
+      <div id="tooltip" className={styles.tooltip} style={tooltip.style}>
+        {tooltip.text}
+      </div>
       <svg viewBox={`0,0,${width},${height}`}>
         <g key="bars">
           {data.map((d, i) => {
