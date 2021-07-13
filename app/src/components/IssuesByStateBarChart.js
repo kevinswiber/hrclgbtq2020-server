@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as d3 from 'd3';
 import { AxisDomain, Tick, Orientation, TickLine, TickText } from './d3/Axis';
 import { bar, issue } from './IssuesByStateBarChart.module.css'
