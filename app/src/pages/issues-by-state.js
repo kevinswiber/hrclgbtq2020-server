@@ -24,7 +24,7 @@ const IssuesByStatePage = (props) => {
   const states = props.data.sei.states.edges.map((s) => s.node);
   const currentState = props.location.hash.length ?
     props.location.hash.slice(1).toUpperCase() :
-    null;
+    "";
 
   const [current, setCurrent] = useState(currentState);
 
@@ -35,14 +35,15 @@ const IssuesByStatePage = (props) => {
 
   const select = (
     <FormControl className={classes.formControl}>
-      <InputLabel labelid="state-select" id="state-label">State</InputLabel>
-      <Select id='state-select' onChange={change} value={current}>
-        {sorted.map((d) => <MenuItem key={d.id} value={d.id} >{d.name}</MenuItem>)}
+      <InputLabel shrink htmlFor="state-select" id="state-label">State</InputLabel>
+      <Select native inputProps={{ name: 'state', id: 'state-select' }} onChange={change} value={current}>
+        <option key="none" value="">None</option>
+        {sorted.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
       </Select>
     </FormControl>
   );
 
-  const data = current ?
+  const data = (current && current !== "") ?
     states.find((s) => s.id === current).issues :
     null;
 

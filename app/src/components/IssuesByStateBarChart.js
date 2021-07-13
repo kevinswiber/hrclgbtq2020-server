@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as d3 from 'd3';
 import { AxisDomain, Tick, Orientation, TickLine, TickText } from './d3/Axis';
 import { bar, issue } from './IssuesByStateBarChart.module.css'
 
 export const IssuesByStateBarChart = ({ data }) => {
+  const [tooltip, setTooltip] = useState({
+    left: 0,
+    top: 0,
+    opacity: 0,
+    text: ''
+  });
+
   const margin = { top: 30, right: 60, bottom: 10, left: 60 };
   const barHeight = 25;
   const height = Math.ceil((data.length + 0.1) * barHeight) + margin.top + margin.bottom;
@@ -23,8 +30,26 @@ export const IssuesByStateBarChart = ({ data }) => {
   const xTickLabels = ['Worse', 'Better'];
   const xTickFormat = (i) => xTickLabels[x.domain().indexOf(i)];
 
+  const toggleTooltip = (text) => {
+    return (ev) => {
+      const left = ev.clientX + 20;
+      const top = ev.clientY;
+      const opacity = text ? 1 : 0;
+      const options = {
+        left,
+        top,
+        opacity,
+        text
+      };
+
+      console.log(options);
+      setTooltip(options);
+    }
+  };
+
   return (
     <div id="issues-by-state-chart">
+      <div id="tooltip" style={{ position: 'fixed', border: '1px solid black', padding: '10px', width: '200px', backgroundColor: 'white', left: tooltip.left, top: tooltip.top, opacity: tooltip.opacity }}>{tooltip.text}</div>
       <svg viewBox={`0,0,${width},${height}`}>
         <g key="bars">
           {data.map((d, i) => {
@@ -37,13 +62,15 @@ export const IssuesByStateBarChart = ({ data }) => {
               <g key={d.kind}>
                 <rect
                   className={bar}
+                  onMouseMove={toggleTooltip(d.policy)}
+                  onMouseOut={toggleTooltip()}
                   fill={d3.schemeSet1[d.value >= 0 ? 1 : 0]}
                   x={x(Math.min(d.value, 0))}
                   y={y(i)}
                   width={width}
                   style={{ width: `${width}` }}
                   height={y.bandwidth()} />
-                <title>{d.policy}</title>
+                {/*<title>{d.policy}</title>*/}
               </g>
             );
           })}
