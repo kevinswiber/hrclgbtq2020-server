@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as d3 from 'd3';
 import { AxisDomain, Tick, Orientation, TickLine, TickText } from './d3/Axis';
-import { bar, issue } from './IssuesByStateBarChart.module.css'
+import * as styles from './IssuesByStateBarChart.module.css'
 
 export const IssuesByStateBarChart = ({ data }) => {
   const [tooltip, setTooltip] = useState({
@@ -32,24 +32,20 @@ export const IssuesByStateBarChart = ({ data }) => {
 
   const toggleTooltip = (text) => {
     return (ev) => {
-      const left = ev.clientX + 20;
-      const top = ev.clientY;
       const opacity = text ? 1 : 0;
-      const options = {
-        left,
-        top,
-        opacity,
-        text
-      };
-
-      console.log(options);
-      setTooltip(options);
+      setTooltip({ opacity, text });
     }
+  };
+
+  const placeTooltip = (ev) => {
+    const left = ev.clientX + 20;
+    const top = ev.clientY;
+    setTooltip({ ...tooltip, left, top });
   };
 
   return (
     <div id="issues-by-state-chart">
-      <div id="tooltip" style={{ position: 'fixed', border: '1px solid black', padding: '10px', width: '200px', backgroundColor: 'white', left: tooltip.left, top: tooltip.top, opacity: tooltip.opacity }}>{tooltip.text}</div>
+      <div id="tooltip" className={styles.tooltip} style={{ left: tooltip.left, top: tooltip.top, opacity: tooltip.opacity }}>{tooltip.text}</div>
       <svg viewBox={`0,0,${width},${height}`}>
         <g key="bars">
           {data.map((d, i) => {
@@ -61,8 +57,9 @@ export const IssuesByStateBarChart = ({ data }) => {
             return (
               <g key={d.kind}>
                 <rect
-                  className={bar}
-                  onMouseMove={toggleTooltip(d.policy)}
+                  className={styles.bar}
+                  onMouseOver={toggleTooltip(d.policy)}
+                  onMouseMove={placeTooltip}
                   onMouseOut={toggleTooltip()}
                   fill={d3.schemeSet1[d.value >= 0 ? 1 : 0]}
                   x={x(Math.min(d.value, 0))}
@@ -104,7 +101,7 @@ export const IssuesByStateBarChart = ({ data }) => {
                     orient={orient}
                     tickSize="0"
                     tickPadding="5"
-                    className={issue}
+                    className={styles.issue}
                     value={d}
                     scale={y}
                     tickFormat={yTickFormat}

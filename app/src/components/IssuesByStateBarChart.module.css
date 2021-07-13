@@ -6,3 +6,13 @@
 .issue {
   transition: transform 500ms;
 }
+
+.tooltip {
+  pointer-events: none;
+  position: fixed;
+  /*border: 1px solid black;*/
+  padding: 10px;
+  width: 200px;
+  background-color: white;
+  box-shadow: 0.17rem 0.17rem 0.25rem rgba(0, 0, 0, 0.5);
+}
