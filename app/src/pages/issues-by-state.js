@@ -48,8 +48,8 @@ const IssuesByStatePage = (props) => {
     null;
 
   return (
-    <Container maxWidth="lg">
-      <h1>State Equality Index 2020 - All States</h1>
+    <Container maxWidth="md">
+      <h2>State Policies</h2>
       {select}
       {data &&
         <IssuesByStateBarChart data={data} />}

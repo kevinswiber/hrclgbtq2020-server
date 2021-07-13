@@ -16,7 +16,7 @@ export const IssuesByStateBarChart = ({ data }) => {
   const margin = { top: 30, right: 60, bottom: 10, left: 60 };
   const barHeight = 25;
   const height = Math.ceil((data.length + 0.1) * barHeight) + margin.top + margin.bottom;
-  const width = 900
+  const width = 700
 
   const x = d3.scaleLinear()
     .domain([-6, 6])
@@ -29,7 +29,7 @@ export const IssuesByStateBarChart = ({ data }) => {
 
   const yTickFormat = (i) => data[i].name;
 
-  const xTickLabels = ['Worse', 'Better'];
+  const xTickLabels = ['Anti-LGBTQ', 'Pro-LGBTQ'];
   const xTickFormat = (i) => xTickLabels[x.domain().indexOf(i)];
 
   const toggleTooltip = (text) => {
