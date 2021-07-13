@@ -1,7 +1,11 @@
 import * as d3 from 'd3';
 import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
-import { Container, FormControl, InputLabel, MenuItem, Select, makeStyles } from '@material-ui/core';
+import {
+  Container, FormControl, InputLabel, Paper, Select, Table,
+  TableBody, TableCell, TableContainer, TableHead, TableRow,
+  makeStyles
+} from '@material-ui/core';
 import { IssuesByStateBarChart } from '../components/IssuesByStateBarChart';
 
 const useStyles = makeStyles((theme) => ({
@@ -12,6 +16,13 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  tableContainer: {
+    marginTop: 60,
+    marginBottom: 120
+  },
+  table: {
+    minWidth: 650,
+  }
 }));
 
 const IssuesByStatePage = (props) => {
@@ -52,7 +63,32 @@ const IssuesByStatePage = (props) => {
       <h2>State Policies</h2>
       {select}
       {data &&
-        <IssuesByStateBarChart data={data} />}
+        <div>
+          <IssuesByStateBarChart data={data} />
+          <TableContainer className={classes.tableContainer} component={Paper}>
+            <Table className={classes.table} aria-label="state policy table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Issue</TableCell>
+                  <TableCell>Policy</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.map((row) => {
+                  return (
+                    <TableRow key={row.kind}>
+                      <TableCell component="th" scope="row">
+                        {row.name}
+                      </TableCell>
+                      <TableCell>{row.policy}</TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      }
     </Container>
   )
 };
