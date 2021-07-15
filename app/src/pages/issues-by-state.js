@@ -55,16 +55,16 @@ const IssuesByStatePage = (props) => {
   );
 
   const data = (current && current !== "") ?
-    states.find((s) => s.id === current).issues :
+    states.find((s) => s.id === current) :
     null;
 
   return (
     <Container maxWidth="md">
-      <h2>State Policies</h2>
+      <h2>{(data && data.name) || ''} state policies for LGBTQ+ issues</h2>
       {select}
       {data &&
         <div>
-          <IssuesByStateBarChart data={data} />
+          <IssuesByStateBarChart data={data.issues} />
           <TableContainer className={classes.tableContainer} component={Paper}>
             <Table className={classes.table} aria-label="state policy table">
               <TableHead>
@@ -74,7 +74,7 @@ const IssuesByStatePage = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {data.map((row) => {
+                {data.issues.map((row) => {
                   return (
                     <TableRow key={row.kind}>
                       <TableCell component="th" scope="row">

@@ -58,6 +58,7 @@ export const Tick = ({ orient, scale, value, line, text, ...tickAttrs }) => {
   const offset = typeof window !== 'undefined' && window.devicePixelRatio > 1 ? 0 : 0.5;
   const transform = orient === top || orient === bottom ? translateX : translateY;
   const position = (scale.bandwidth ? center : number)(scale.copy(), offset);
+  console.log(value, 'position:' + position(value));
 
   return (
     <g

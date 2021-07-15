@@ -1,14 +1,14 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { Container } from '@material-ui/core'
-import { AllStatesRadialChart } from '../components/AllStatesRadialChart';
+import { AllStatesScatterPlotChart } from '../components/AllStatesScatterPlotChart';
+import { Container } from '@material-ui/core';
 
-const AllStatesPage = ({ data }) => {
+const AllStatesScatterPlotPage = ({ data }) => {
   return (
     <main>
-      <Container maxWidth="md">
-        <h1>State policies on LGBTQ+ issues</h1>
-        <AllStatesRadialChart
+      <Container maxWidth="sm">
+        <h1>State Equality Index 2020 - All States</h1>
+        <AllStatesScatterPlotChart
           states={data.sei.states.edges}
           issues={data.sei.issues.edges} />
       </Container>
@@ -16,10 +16,10 @@ const AllStatesPage = ({ data }) => {
   )
 };
 
-export default AllStatesPage;
+export default AllStatesScatterPlotPage;
 
 export const query = graphql`
-  query AllStatesPageQuery {
+  query AllStatesScatterPlotPageQuery {
     sei {
       states {
         edges {
