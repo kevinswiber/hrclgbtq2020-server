@@ -5,7 +5,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-theme-material-ui',
-    'gatsby-plugin-material-ui',
+    /*'gatsby-plugin-material-ui',*/
     'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-plugin-google-analytics',

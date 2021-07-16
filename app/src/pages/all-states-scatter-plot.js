@@ -4,13 +4,16 @@ import { AllStatesScatterPlotChart } from '../components/AllStatesScatterPlotCha
 import { Container } from '@material-ui/core';
 
 const AllStatesScatterPlotPage = ({ data }) => {
+  const states = data.sei.states.edges.map((s) => s.node);
+  const issues = data.sei.issues.edges.map((i) => i.node);
+
   return (
     <main>
-      <Container maxWidth="sm">
+      <Container maxWidth="lg">
         <h1>State Equality Index 2020 - All States</h1>
         <AllStatesScatterPlotChart
-          states={data.sei.states.edges}
-          issues={data.sei.issues.edges} />
+          states={states}
+          issues={issues} />
       </Container>
     </main>
   )

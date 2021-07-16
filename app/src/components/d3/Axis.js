@@ -58,7 +58,6 @@ export const Tick = ({ orient, scale, value, line, text, ...tickAttrs }) => {
   const offset = typeof window !== 'undefined' && window.devicePixelRatio > 1 ? 0 : 0.5;
   const transform = orient === top || orient === bottom ? translateX : translateY;
   const position = (scale.bandwidth ? center : number)(scale.copy(), offset);
-  console.log(value, 'position:' + position(value));
 
   return (
     <g
@@ -87,14 +86,12 @@ export const TickLine = ({ orient, tickSize = 6, ...lineAttrs }) => {
   );
 };
 
-export const TickText = ({ orient, tickSize, tickPadding, tickFormat, ticks = [], value, scale, ...textAttrs }) => {
-  tickPadding = tickPadding || 3;
-  const tickSizeInner = tickSize || 6;
+export const TickText = ({ orient, tickSize = 6, tickPadding = 3, tickFormat, ticks = [], value, scale, ...textAttrs }) => {
   const k = orient === top || orient === left ? -1 : 1;
   const x = orient === left || orient === right ? 'x' : 'y';
 
   const format = tickFormat == null ? (scale.tickFormat ? scale.tickFormat.apply(scale, ticks) : (x) => x) : tickFormat;
-  const spacing = Math.max(tickSizeInner, 0) + tickPadding;
+  const spacing = Math.max(+tickSize, 0) + +tickPadding;
 
   const initialAttrs = {
     fill: 'currentColor',

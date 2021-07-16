@@ -46986,12 +46986,6 @@ var plugins = [{
     }
   }
 }, {
-  name: 'gatsby-plugin-material-ui',
-  plugin: __webpack_require__(/*! ./node_modules/gatsby-plugin-material-ui/gatsby-ssr */ "./node_modules/gatsby-plugin-material-ui/gatsby-ssr.js"),
-  options: {
-    "plugins": []
-  }
-}, {
   name: 'gatsby-plugin-google-analytics',
   plugin: __webpack_require__(/*! ./node_modules/gatsby-plugin-google-analytics/gatsby-ssr */ "./node_modules/gatsby-plugin-google-analytics/gatsby-ssr.js"),
   options: {
