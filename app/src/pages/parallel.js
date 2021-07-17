@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { ParallelCoordinatesPlotChart } from '../components/ParallelCoordinatesPlotChart'
+import { ParallelCoordinatesPlotChart } from '../components/charts/ParallelCoordinatesPlotChart'
 
 const ParallelPage = (props) => {
   const issues = props.data.sei.issues.edges.map((s) => s.node);

@@ -1,10 +1,11 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { Container } from '@material-ui/core';
 
 const HomePage = ({ data }) => {
   return (
     <main>
-      <div className="md:container md:mx-auto">
+      <Container maxWidth="md">
         <h1>{data.site.siteMetadata.title}</h1>
         <div className="divide-y divide-gray-100">
           <ul>
@@ -12,11 +13,17 @@ const HomePage = ({ data }) => {
               <a href="/all-states">All States</a>
             </li>
             <li>
+              <a href="/all-states-scatter-plot">All States Scatterplot</a>
+            </li>
+            <li>
+              <a href="/issues-bar-chart">Issues Bar Chart</a>
+            </li>
+            <li>
               <a href="/issues-by-state">Issues by State</a>
             </li>
           </ul>
         </div>
-      </div>
+        </Container>
     </main>
   )
 };

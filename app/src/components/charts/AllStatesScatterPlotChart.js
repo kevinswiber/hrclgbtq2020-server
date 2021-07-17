@@ -1,6 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3';
-import { AxisDomain, Orientation, Tick, TickLine, TickText } from './d3/Axis';
+import { AxisDomain, Orientation, Tick, TickLine, TickText } from '../d3/Axis';
 
 export const AllStatesScatterPlotChart = (props) => {
   const width = 620;

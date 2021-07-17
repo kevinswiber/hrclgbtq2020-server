@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { AllStatesScatterPlotChart } from '../components/charts/AllStatesScatterPlotChart';
+import { IssuesBarChart } from '../components/charts/IssuesBarChart';
 import { Container } from '@material-ui/core';
 
-const AllStatesScatterPlotPage = ({ data }) => {
+const IssuesBarChartPage = ({ data }) => {
   const states = data.sei.states.edges.map((s) => s.node);
   const issues = data.sei.issues.edges.map((i) => i.node);
 
@@ -11,7 +11,7 @@ const AllStatesScatterPlotPage = ({ data }) => {
     <main>
       <Container maxWidth="lg">
         <h1>State Equality Index 2020 - All States</h1>
-        <AllStatesScatterPlotChart
+        <IssuesBarChart
           states={states}
           issues={issues} />
       </Container>
@@ -19,10 +19,10 @@ const AllStatesScatterPlotPage = ({ data }) => {
   )
 };
 
-export default AllStatesScatterPlotPage;
+export default IssuesBarChartPage;
 
 export const query = graphql`
-  query AllStatesScatterPlotPageQuery {
+  query IssuesBarChartPageQuery {
     sei {
       states {
         edges {

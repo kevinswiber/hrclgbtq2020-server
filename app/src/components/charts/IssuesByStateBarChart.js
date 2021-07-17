@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as d3 from 'd3';
-import { AxisDomain, Tick, Orientation, TickLine, TickText } from './d3/Axis';
+import { AxisDomain, Tick, Orientation, TickLine, TickText } from '../d3/Axis';
 import * as styles from './IssuesByStateBarChart.module.css'
 
 export const IssuesByStateBarChart = ({ data }) => {

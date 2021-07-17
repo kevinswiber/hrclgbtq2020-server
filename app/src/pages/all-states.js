@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { Container } from '@material-ui/core'
-import { AllStatesRadialChart } from '../components/AllStatesRadialChart';
+import { AllStatesRadialChart } from '../components/charts/AllStatesRadialChart';
 
 const AllStatesPage = ({ data }) => {
   return (

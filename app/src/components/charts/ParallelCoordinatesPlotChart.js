@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 import React from 'react';
-import { AxisDomain, Orientation } from './d3/Axis';
+import { AxisDomain, Orientation } from '../d3/Axis';
 
 export const ParallelCoordinatesPlotChart = ({ issues }) => {
   const ys = {};

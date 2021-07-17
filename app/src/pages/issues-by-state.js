@@ -6,7 +6,7 @@ import {
   TableBody, TableCell, TableContainer, TableHead, TableRow,
   makeStyles
 } from '@material-ui/core';
-import { IssuesByStateBarChart } from '../components/IssuesByStateBarChart';
+import { IssuesByStateBarChart } from '../components/charts/IssuesByStateBarChart';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
