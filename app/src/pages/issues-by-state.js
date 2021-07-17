@@ -25,42 +25,57 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const IssuesByStatePage = (props) => {
-  useEffect(() => {
-    window.location.hash = `#${current}`;
-  });
+const slugify = (state) => state.toLowerCase().replace(' ', '-').replace(',', '');
+const slugMap = {};
+const reverseSlugMap = {};
 
+const IssuesByStatePage = (props) => {
+  const [current, setCurrent] = useState();
+  const states = props.data.sei.states.edges.map((s) => s.node);
   const classes = useStyles();
 
-  const states = props.data.sei.states.edges.map((s) => s.node);
-  const currentState = props.location.hash.length ?
-    props.location.hash.slice(1).toUpperCase() :
-    "";
+  useEffect(() => {
+    const currentState = props.location.hash.length > 2 ?
+      props.location.hash.slice(2) :
+      '';
 
-  const [current, setCurrent] = useState(currentState);
+    setCurrent(currentState);
+  });
 
-  const sorted = states.sort((a, b) => d3.ascending(a.name, b.name));
   const change = (event) => {
     setCurrent(event.target.value);
+    window.location.hash = `#!${event.target.value}`;
   };
+
+  const sorted = states.sort((a, b) => d3.ascending(a.name, b.name));
+
+  for (const s of sorted) {
+    const slug = slugify(s.name);
+    slugMap[slug] = s.name;
+    reverseSlugMap[s.name] = slug;
+  }
 
   const select = (
     <FormControl className={classes.formControl}>
       <InputLabel shrink htmlFor="state-select" id="state-label">State</InputLabel>
       <Select native inputProps={{ name: 'state', id: 'state-select' }} onChange={change} value={current}>
         <option key="none" value="">None</option>
-        {sorted.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
+        {sorted.map((d) => {
+          return (
+            <option key={d.id} value={reverseSlugMap[d.name]}>{d.name}</option>
+          );
+        })}
       </Select>
     </FormControl>
   );
 
-  const data = (current && current !== "") ?
-    states.find((s) => s.id === current) :
+  const data = (current && current !== '') ?
+    states.find((s) => s.name === slugMap[current]) :
     null;
 
   return (
     <Container maxWidth="md">
-      <h2>{(data && data.name) || ''} state policies for LGBTQ+ issues</h2>
+      <h2>{(data && data.name) || ''} State policies for LGBTQ+ issues</h2>
       {select}
       {data &&
         <div>

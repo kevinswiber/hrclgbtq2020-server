@@ -30,6 +30,11 @@ export const query = graphql`
             id
             name
             region
+            district
+            score {
+              kind
+              description
+            }
             issues {
               kind
               name
@@ -45,6 +50,9 @@ export const query = graphql`
             id
             name
             states {
+              id
+              name
+              policy
               value
             }
           }
