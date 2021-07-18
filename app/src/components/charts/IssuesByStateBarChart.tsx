@@ -86,7 +86,7 @@ export const IssuesByStateBarChart = ({
                   onMouseOut={toggleTooltip(d.policy, { hide: true })}
                   fill={d3.schemeSet1[d.value >= 0 ? 1 : 0]}
                   x={x(Math.min(d.value, 0))}
-                  y={y(i.toString())}
+                  y={y(i)}
                   width={width}
                   height={y.bandwidth()}
                 />
