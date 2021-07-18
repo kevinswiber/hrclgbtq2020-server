@@ -7,6 +7,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import { IssuesByStateBarChart } from '../components/charts/IssuesByStateBarChart';
+import * as pageStyles from './issues-by-state.module.css'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -56,7 +57,7 @@ const IssuesByStatePage = (props) => {
   }
 
   const select = (
-    <FormControl className={classes.formControl}>
+    <FormControl className={`${classes.formControl} ${pageStyles.noprint}`}>
       <InputLabel shrink htmlFor="state-select" id="state-label">State</InputLabel>
       <Select native inputProps={{ name: 'state', id: 'state-select' }} onChange={change} value={current}>
         <option key="none" value="">None</option>
