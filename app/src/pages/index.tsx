@@ -2,7 +2,17 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { Container } from '@material-ui/core';
 
-const HomePage = ({ data }) => {
+interface HomePageProps {
+  data: {
+    site: {
+      siteMetadata: {
+        title: string
+      }
+    }
+  }
+}
+
+const HomePage = ({ data }: HomePageProps): JSX.Element => {
   return (
     <main>
       <Container maxWidth="md">

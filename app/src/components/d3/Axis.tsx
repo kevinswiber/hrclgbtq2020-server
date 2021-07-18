@@ -30,10 +30,17 @@ function center(scale, offset) {
   return d => +scale(d) + offset;
 }
 
-export const AxisDomain = ({ orient, scale, tickSize, ...pathAttrs }) => {
+interface AxisDomainProps {
+  orient: number
+  scale: unknown, //d3.ScaleBand<any> | d3.ScaleLinear<any> | d3.ScaleRadial<any>
+  tickSize: number
+  pathAttrs: unknown
+}
+
+export const AxisDomain = ({ orient, scale, tickSize, ...pathAttrs }: AxisDomainProps): JSX.Element => {
   tickSize = (tickSize === null || tickSize === undefined) ? 6 : tickSize;
   const offset = typeof window !== 'undefined' && window.devicePixelRatio > 1 ? 0 : 0.5;
-  const k = orient === top || orient === left ? -1 : 1;
+  const k = orient === Orientation.TOP || orient === Orientation.LEFT ? -1 : 1;
 
   const range = scale.range(),
     range0 = +range[0] + offset,

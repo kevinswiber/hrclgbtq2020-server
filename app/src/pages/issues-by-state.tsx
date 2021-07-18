@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 import React, { useEffect, useState } from 'react';
+import { HLocation } from '@reach/router'
 import { graphql } from 'gatsby';
 import {
   Container, FormControl, InputLabel, Paper, Select, Table,
@@ -8,6 +9,7 @@ import {
 } from '@material-ui/core';
 import { IssuesByStateBarChart } from '../components/charts/IssuesByStateBarChart';
 import * as pageStyles from './issues-by-state.module.css'
+import { StateEqualityIndex } from '../types';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -26,12 +28,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const slugify = (state) => state.toLowerCase().replace(' ', '-').replace(',', '');
-const slugMap = {};
-const reverseSlugMap = {};
+const slugify = (state: string) => state.toLowerCase().replace(' ', '-').replace(',', '');
+const slugMap: { [slug: string]: string } = {};
+const reverseSlugMap: { [stateName: string]: string } = {};
 
-const IssuesByStatePage = (props) => {
-  const [current, setCurrent] = useState();
+interface IssuesByStatePageProps {
+  data: { sei: StateEqualityIndex }
+  location: HLocation
+}
+
+const IssuesByStatePage = (props: IssuesByStatePageProps): JSX.Element => {
+  const [current, setCurrent] = useState<string>();
   const states = props.data.sei.states.edges.map((s) => s.node);
   const classes = useStyles();
 
@@ -43,9 +50,9 @@ const IssuesByStatePage = (props) => {
     setCurrent(currentState);
   });
 
-  const change = (event) => {
-    setCurrent(event.target.value);
-    window.location.hash = `#!${event.target.value}`;
+  const change = (value: string) => {
+    setCurrent(value);
+    window.location.hash = `#!${value}`;
   };
 
   const sorted = states.sort((a, b) => d3.ascending(a.name, b.name));
@@ -59,7 +66,7 @@ const IssuesByStatePage = (props) => {
   const select = (
     <FormControl className={`${classes.formControl} ${pageStyles.noprint}`}>
       <InputLabel shrink htmlFor="state-select" id="state-label">State</InputLabel>
-      <Select native inputProps={{ name: 'state', id: 'state-select' }} onChange={change} value={current}>
+      <Select native inputProps={{ name: 'state', id: 'state-select' }} onChange={(e) => change(e.target.value as string)} value={current}>
         <option key="none" value="">None</option>
         {sorted.map((d) => {
           return (

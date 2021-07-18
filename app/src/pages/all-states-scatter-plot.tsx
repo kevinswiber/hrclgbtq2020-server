@@ -2,8 +2,13 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { AllStatesScatterPlotChart } from '../components/charts/AllStatesScatterPlotChart';
 import { Container } from '@material-ui/core';
+import { StateEqualityIndex } from '../types';
 
-const AllStatesScatterPlotPage = ({ data }) => {
+interface AllStatesScatterPlotPageProps {
+  data: { sei: StateEqualityIndex }
+}
+
+const AllStatesScatterPlotPage = ({ data }: AllStatesScatterPlotPageProps): JSX.Element => {
   const states = data.sei.states.edges.map((s) => s.node);
   const issues = data.sei.issues.edges.map((i) => i.node);
 

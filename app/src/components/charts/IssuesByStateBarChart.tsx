@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import * as d3 from 'd3';
 import { AxisDomain, Tick, Orientation, TickLine, TickText } from '../d3/Axis';
 import * as styles from './IssuesByStateBarChart.module.css'
+import { StateIssue } from '../../types';
 
-export const IssuesByStateBarChart = ({ data }) => {
+export const IssuesByStateBarChart = ({ data }: { data: Array<StateIssue>}): JSX.Element => {
   const [tooltip, setTooltip] = useState({
     style: {
       left: 0,
@@ -27,13 +28,13 @@ export const IssuesByStateBarChart = ({ data }) => {
     .rangeRound([margin.top, height - margin.bottom])
     .padding(0.1);
 
-  const yTickFormat = (i) => data[i].name;
+  const yTickFormat = (i: number) => data[i].name;
 
   const xTickLabels = ['Anti-LGBTQ', 'Pro-LGBTQ'];
-  const xTickFormat = (i) => xTickLabels[x.domain().indexOf(i)];
+  const xTickFormat = (i: number) => xTickLabels[x.domain().indexOf(i)];
 
-  const toggleTooltip = (text, options = {}) => {
-    return (ev) => {
+  const toggleTooltip = (text: string, options: { hide: boolean } = { hide: false }) => {
+    return () => {
       const opacity = options.hide ? 0 : 1;
       setTooltip((prevTooltip) =>
         ({ ...prevTooltip, style: { ...prevTooltip.style, opacity }, text }));
@@ -88,7 +89,7 @@ export const IssuesByStateBarChart = ({ data }) => {
           <AxisDomain orient={Orientation.LEFT} tickSize="0" scale={y} />
           {y.domain().map((d, i) => {
             const orient = Orientation.LEFT;
-            const textAttrs = {};
+            const textAttrs: { textAnchor?: string, x?: number } = {};
             if (data[i].value <= 0) {
               textAttrs.textAnchor = 'start';
               textAttrs.x = 6;
@@ -124,7 +125,7 @@ export const IssuesByStateBarChart = ({ data }) => {
           fontSize="10"
           fontFamily="sans-serif"
           textAnchor="middle">
-          {x.domain().map((d, i) => {
+          {x.domain().map((d: StateIssue) => {
             const orient = Orientation.TOP;
             return (
               <Tick

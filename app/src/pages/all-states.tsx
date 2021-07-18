@@ -2,8 +2,13 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { Container } from '@material-ui/core'
 import { AllStatesRadialChart } from '../components/charts/AllStatesRadialChart';
+import { StateEqualityIndex } from '../types';
 
-const AllStatesPage = ({ data }) => {
+interface IssuesByStatePageProps {
+  data: { sei: StateEqualityIndex }
+}
+
+const AllStatesPage = ({ data }: IssuesByStatePageProps): JSX.Element => {
   return (
     <main>
       <Container maxWidth="md">

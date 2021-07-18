@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const babelJest = require('babel-jest');
+
 const babelOptions = {
   presets: ['babel-preset-gatsby']
 };
 
-module.exports = require('babel-jest').default.createTransformer(babelOptions);
+module.exports = babelJest.default.createTransformer(babelOptions);
