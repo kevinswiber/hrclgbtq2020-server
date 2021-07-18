@@ -31,7 +31,7 @@ export const IssuesByStateBarChart = ({
 
   const y = d3
     .scaleBand()
-    .domain(d3.range(data.length) as Iterable<string>)
+    .domain(d3.range(data.length).map((d) => d.toString()))
     .rangeRound([margin.top, height - margin.bottom])
     .padding(0.1);
 
@@ -86,7 +86,7 @@ export const IssuesByStateBarChart = ({
                   onMouseOut={toggleTooltip(d.policy, { hide: true })}
                   fill={d3.schemeSet1[d.value >= 0 ? 1 : 0]}
                   x={x(Math.min(d.value, 0))}
-                  y={y(i)}
+                  y={y(i.toString())}
                   width={width}
                   height={y.bandwidth()}
                 />
