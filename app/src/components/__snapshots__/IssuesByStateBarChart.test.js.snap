@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssuesByStateBarChart renders correctly 1`] = `
+<div
+  id="issues-by-state-chart"
+>
+  <div
+    id="tooltip"
+    style={
+      Object {
+        "left": 0,
+        "opacity": 0,
+        "top": 0,
+      }
+    }
+  >
+    
+  </div>
+  <svg
+    viewBox="0,0,700,93"
+  >
+    <g>
+      <g>
+        <rect
+          fill="#377eb8"
+          height={23}
+          onMouseMove={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          style={
+            Object {
+              "transitionDelay": "0ms",
+              "width": 145,
+            }
+          }
+          width={145}
+          x={350}
+          y={33}
+        />
+      </g>
+      <g>
+        <rect
+          fill="#e41a1c"
+          height={23}
+          onMouseMove={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+          style={
+            Object {
+              "transitionDelay": "20ms",
+              "width": 97,
+            }
+          }
+          width={97}
+          x={253}
+          y={58}
+        />
+      </g>
+    </g>
+    <g
+      fill="none"
+      fontFamily="sans-serif"
+      fontSize="12"
+      textAnchor="end"
+      transform="translate(350,0)"
+    >
+      <path
+        className="domain"
+        d="M0.5,30.5V83.5"
+        stroke="currentColor"
+      />
+      <g
+        className="tick"
+        opacity="1"
+        transform="translate(0,44.5)"
+      >
+        <line
+          stroke="currentColor"
+          x2={-0}
+        />
+        <text
+          dy="0.32em"
+          fill="currentColor"
+          x={-5}
+        >
+          Test Issue
+        </text>
+      </g>
+      <g
+        className="tick"
+        opacity="1"
+        transform="translate(0,69.5)"
+      >
+        <line
+          stroke="currentColor"
+          x2={-0}
+        />
+        <text
+          dy="0.32em"
+          fill="currentColor"
+          textAnchor="start"
+          x={6}
+        >
+          Test Again Issue
+        </text>
+      </g>
+    </g>
+    <g
+      fill="none"
+      fontFamily="sans-serif"
+      fontSize="10"
+      textAnchor="middle"
+      transform="translate(0, 30)"
+    >
+      <g
+        className="tick"
+        opacity="1"
+        transform="translate(60.5,0)"
+      >
+        <line
+          stroke="currentColor"
+          y2={-6}
+        />
+        <text
+          dy="0em"
+          fill="currentColor"
+          y={-9}
+        >
+          Anti-LGBTQ
+        </text>
+      </g>
+      <g
+        className="tick"
+        opacity="1"
+        transform="translate(640.5,0)"
+      >
+        <line
+          stroke="currentColor"
+          y2={-6}
+        />
+        <text
+          dy="0em"
+          fill="currentColor"
+          y={-9}
+        >
+          Pro-LGBTQ
+        </text>
+      </g>
+    </g>
+  </svg>
+</div>
+`;

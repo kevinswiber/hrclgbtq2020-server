@@ -20,7 +20,7 @@ describe('IssuesByStateBarChart', () => {
       }
     ];
     const testRenderer = TestRenderer.create(<IssuesByStateBarChart data={data}/>);
-    const testInstance = testRenderer.root;
-    expect(testInstance.props.data.length).toEqual(2);
+
+    expect(testRenderer.toJSON()).toMatchSnapshot();
   });
 });
