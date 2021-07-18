@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { Container } from '@material-ui/core'
 import { AllStatesRadialChart } from '../components/charts/AllStatesRadialChart';
-import { StateEqualityIndex } from '../types';
+import { StateEqualityIndex } from '../typings/types';
 
 interface IssuesByStatePageProps {
   data: { sei: StateEqualityIndex }

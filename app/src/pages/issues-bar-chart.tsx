@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 //import { IssuesBarChart } from '../components/charts/IssuesBarChart';
 import { Container } from '@material-ui/core';
-import { StateEqualityIndex } from '../types';
+import { StateEqualityIndex } from '../typings/types';
 
 interface IssueBarChartPageProps {
   data: { sei: StateEqualityIndex }

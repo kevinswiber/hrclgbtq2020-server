@@ -1,15 +1,24 @@
-import * as d3 from 'd3';
-import React, { useEffect, useState } from 'react';
-import { HLocation } from '@reach/router'
-import { graphql } from 'gatsby';
+import * as d3 from "d3";
+import React, { useEffect, useState } from "react";
+import { HLocation } from "@reach/router";
+import { graphql } from "gatsby";
 import {
-  Container, FormControl, InputLabel, Paper, Select, Table,
-  TableBody, TableCell, TableContainer, TableHead, TableRow,
-  makeStyles
-} from '@material-ui/core';
-import { IssuesByStateBarChart } from '../components/charts/IssuesByStateBarChart';
-import * as pageStyles from './issues-by-state.module.css'
-import { StateEqualityIndex } from '../types';
+  Container,
+  FormControl,
+  InputLabel,
+  Paper,
+  Select,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  makeStyles,
+} from "@material-ui/core";
+import { IssuesByStateBarChart } from "../components/charts/IssuesByStateBarChart";
+import * as pageStyles from "./issues-by-state.module.css";
+import { StateEqualityIndex } from "../typings/types";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -21,20 +30,21 @@ const useStyles = makeStyles((theme) => ({
   },
   tableContainer: {
     marginTop: 20,
-    marginBottom: 120
+    marginBottom: 120,
   },
   table: {
     minWidth: 650,
-  }
+  },
 }));
 
-const slugify = (state: string) => state.toLowerCase().replace(' ', '-').replace(',', '');
+const slugify = (state: string) =>
+  state.toLowerCase().replace(" ", "-").replace(",", "");
 const slugMap: { [slug: string]: string } = {};
 const reverseSlugMap: { [stateName: string]: string } = {};
 
 interface IssuesByStatePageProps {
-  data: { sei: StateEqualityIndex }
-  location: HLocation
+  data: { sei: StateEqualityIndex };
+  location: HLocation;
 }
 
 const IssuesByStatePage = (props: IssuesByStatePageProps): JSX.Element => {
@@ -43,9 +53,8 @@ const IssuesByStatePage = (props: IssuesByStatePageProps): JSX.Element => {
   const classes = useStyles();
 
   useEffect(() => {
-    const currentState = props.location.hash.length > 2 ?
-      props.location.hash.slice(2) :
-      '';
+    const currentState =
+      props.location.hash.length > 2 ? props.location.hash.slice(2) : "";
 
     setCurrent(currentState);
   });
@@ -65,27 +74,39 @@ const IssuesByStatePage = (props: IssuesByStatePageProps): JSX.Element => {
 
   const select = (
     <FormControl className={`${classes.formControl} ${pageStyles.noprint}`}>
-      <InputLabel shrink htmlFor="state-select" id="state-label">State</InputLabel>
-      <Select native inputProps={{ name: 'state', id: 'state-select' }} onChange={(e) => change(e.target.value as string)} value={current}>
-        <option key="none" value="">None</option>
+      <InputLabel shrink htmlFor="state-select" id="state-label">
+        State
+      </InputLabel>
+      <Select
+        native
+        inputProps={{ name: "state", id: "state-select" }}
+        onChange={(e) => change(e.target.value as string)}
+        value={current}
+      >
+        <option key="none" value="">
+          None
+        </option>
         {sorted.map((d) => {
           return (
-            <option key={d.id} value={reverseSlugMap[d.name]}>{d.name}</option>
+            <option key={d.id} value={reverseSlugMap[d.name]}>
+              {d.name}
+            </option>
           );
         })}
       </Select>
     </FormControl>
   );
 
-  const data = (current && current !== '') ?
-    states.find((s) => s.name === slugMap[current]) :
-    null;
+  const data =
+    current && current !== ""
+      ? states.find((s) => s.name === slugMap[current])
+      : null;
 
   return (
     <Container maxWidth="md">
-      <h2>{(data && data.name) || ''} State policies for LGBTQ+ issues</h2>
+      <h2>{(data && data.name) || ""} State policies for LGBTQ+ issues</h2>
       {select}
-      {data &&
+      {data && (
         <div>
           <IssuesByStateBarChart data={data.issues} />
           <TableContainer className={classes.tableContainer} component={Paper}>
@@ -111,36 +132,36 @@ const IssuesByStatePage = (props: IssuesByStatePageProps): JSX.Element => {
             </Table>
           </TableContainer>
         </div>
-      }
+      )}
     </Container>
-  )
+  );
 };
 
 export default IssuesByStatePage;
 
 export const query = graphql`
-query IssuesByStateQuery {
-  sei {
-    states {
-      edges {
-        node {
-          id
-          name
-          region
-          district
-          score {
-            kind
-            description
-          }
-          issues {
-            kind
+  query IssuesByStateQuery {
+    sei {
+      states {
+        edges {
+          node {
+            id
             name
-            policy
-            value
+            region
+            district
+            score {
+              kind
+              description
+            }
+            issues {
+              kind
+              name
+              policy
+              value
+            }
           }
         }
       }
     }
   }
-}
 `;

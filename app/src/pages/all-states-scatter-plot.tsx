@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { AllStatesScatterPlotChart } from '../components/charts/AllStatesScatterPlotChart';
 import { Container } from '@material-ui/core';
-import { StateEqualityIndex } from '../types';
+import { StateEqualityIndex } from '../typings/types';
 
 interface AllStatesScatterPlotPageProps {
   data: { sei: StateEqualityIndex }
