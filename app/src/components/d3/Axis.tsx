@@ -130,23 +130,23 @@ export const BandTick = <TDomain, TickAttrs>({
   );
 };
 
-interface NumberTickProps<TickAttrs> {
+interface NumberTickProps<TRange, TOutput, TUnknown, TickAttrs> {
   orient: Orientation;
-  scale: ScaleContinuousNumeric<unknown, unknown, unknown>;
+  scale: ScaleContinuousNumeric<TRange, TOutput, TUnknown>;
   value: NumberValue;
   line: JSX.Element;
   text: JSX.Element;
   tickAttrs?: TickAttrs;
 }
 
-export const NumberTick = <TickAttrs,>({
+export const NumberTick = <TRange, TOutput, TUnknown, TickAttrs>({
   orient,
   scale,
   value,
   line,
   text,
   ...tickAttrs
-}: NumberTickProps<TickAttrs>): JSX.Element => {
+}: NumberTickProps<TRange, TOutput, TUnknown, TickAttrs>): JSX.Element => {
   const offset =
     typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
   const transform =
