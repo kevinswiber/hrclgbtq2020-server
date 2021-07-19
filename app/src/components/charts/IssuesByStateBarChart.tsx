@@ -38,7 +38,14 @@ export const IssuesByStateBarChart = ({
   const yTickFormat = (i: number) => data[i].name;
 
   const xTickLabels = ["Anti-LGBTQ", "Pro-LGBTQ"];
-  const xTickFormat = (i: number) => xTickLabels[x.domain().indexOf(i)];
+  const xTickFormat = (i: number) => {
+    return xTickLabels[
+      x
+        .domain()
+        .map((d) => d.toString())
+        .indexOf(i.toString())
+    ];
+  };
 
   const toggleTooltip = (
     text: string,

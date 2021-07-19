@@ -155,7 +155,7 @@ interface TickTextProps<TTextAttrs> {
   scale: Scale;
   tickSize?: number;
   tickPadding?: number;
-  tickFormat(number): string;
+  tickFormat?(count?: number): string;
   ticks?: number[];
   value: string;
   textAttrs?: TTextAttrs;
@@ -179,7 +179,7 @@ export const TickText = <TTextAttrs,>({
     tickFormat == null
       ? scale.tickFormat
         ? scale.tickFormat(...ticks)
-        : (x) => x
+        : (x: number) => x
       : tickFormat;
   const spacing = Math.max(+tickSize, 0) + +tickPadding;
 
