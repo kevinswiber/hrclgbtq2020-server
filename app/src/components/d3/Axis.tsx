@@ -1,5 +1,5 @@
+import { NumberValue, ScaleBand, ScaleContinuousNumeric, ScalePoint } from "d3";
 import React from "react";
-import { Scale } from "../../typings/d3";
 
 export enum Orientation {
   TOP = 1,
@@ -16,36 +16,40 @@ function translateY(y: number) {
   return "translate(0," + y + ")";
 }
 
-function number(scale: Scale) {
-  return (d) => +scale(d);
+function number<TRange, TOutput, TUnknown>(
+  scale: ScaleContinuousNumeric<TRange, TOutput, TUnknown>
+) {
+  return (d: NumberValue) => +scale(d);
 }
 
-function center(scale: Scale, offset: number) {
+function center<TDomain>(
+  scale: ScaleBand<TDomain> | ScalePoint<TDomain>,
+  offset: number
+) {
   offset = Math.max(0, scale.bandwidth() - offset * 2) / 2;
   if (scale.round()) offset = Math.round(offset);
-  return (d) => +scale(d) + offset;
+  return (d: TDomain) => +(scale(d) || 0) + offset;
 }
 
-interface AxisDomainProps<TAttrs> {
+interface AxisDomainProps<TRange, TAttrs> {
   orient: number;
-  scale: Scale;
+  range: TRange[];
   tickSize?: number;
   pathAttrs?: TAttrs;
 }
 
-export const AxisDomain = <TAttrs,>({
+export const AxisDomain = <TRange, TAttrs>({
   orient,
-  scale,
+  range,
   tickSize,
   ...pathAttrs
-}: AxisDomainProps<TAttrs>): JSX.Element => {
+}: AxisDomainProps<TRange, TAttrs>): JSX.Element => {
   tickSize = tickSize === null || tickSize === undefined ? 6 : tickSize;
   const offset =
     typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
   const k = orient === Orientation.TOP || orient === Orientation.LEFT ? -1 : 1;
 
-  const range = scale.range(),
-    range0 = +range[0] + offset,
+  const range0 = +range[0] + offset,
     range1 = +range[range.length - 1] + offset;
 
   const pathAttrsDerived = {
@@ -88,30 +92,68 @@ export const AxisDomain = <TAttrs,>({
   return <path {...pathAttrsDerived} />;
 };
 
-interface TickProps<TickAttrs> {
+interface BandTickProps<TDomain, TickAttrs> {
   orient: Orientation;
-  scale: Scale;
-  value: string | number;
+  scale: ScaleBand<TDomain> | ScalePoint<TDomain>;
+  value: TDomain;
   line: JSX.Element;
   text: JSX.Element;
   tickAttrs?: TickAttrs;
 }
 
-export const Tick = <TickAttrs,>({
+export const BandTick = <TDomain, TickAttrs>({
   orient,
   scale,
   value,
   line,
   text,
   ...tickAttrs
-}: TickProps<TickAttrs>): JSX.Element => {
+}: BandTickProps<TDomain, TickAttrs>): JSX.Element => {
   const offset =
     typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
   const transform =
     orient === Orientation.TOP || orient === Orientation.BOTTOM
       ? translateX
       : translateY;
-  const position = (scale.bandwidth ? center : number)(scale.copy(), offset);
+  const position = center(scale.copy(), offset);
+
+  return (
+    <g
+      className="tick"
+      opacity="1"
+      transform={transform(position(value) + offset)}
+      {...tickAttrs}
+    >
+      {line}
+      {text}
+    </g>
+  );
+};
+
+interface NumberTickProps<TickAttrs> {
+  orient: Orientation;
+  scale: ScaleContinuousNumeric<unknown, unknown, unknown>;
+  value: NumberValue;
+  line: JSX.Element;
+  text: JSX.Element;
+  tickAttrs?: TickAttrs;
+}
+
+export const NumberTick = <TickAttrs,>({
+  orient,
+  scale,
+  value,
+  line,
+  text,
+  ...tickAttrs
+}: NumberTickProps<TickAttrs>): JSX.Element => {
+  const offset =
+    typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
+  const transform =
+    orient === Orientation.TOP || orient === Orientation.BOTTOM
+      ? translateX
+      : translateY;
+  const position = number(scale.copy());
 
   return (
     <g
@@ -152,35 +194,27 @@ export const TickLine = <TLineAttrs,>({
 
 interface TickTextProps<TTextAttrs> {
   orient: Orientation;
-  scale: Scale;
   tickSize?: number;
   tickPadding?: number;
   tickFormat?(count?: number): string;
-  ticks?: number[];
-  value: string;
+  value: number;
   textAttrs?: TTextAttrs;
 }
 
+// For tickFormat, library consumers should use scale.tickFormat(...ticks)
+// if no custom format exists.
 export const TickText = <TTextAttrs,>({
   orient,
   tickSize = 6,
   tickPadding = 3,
   tickFormat,
-  ticks = [],
   value,
-  scale,
   ...textAttrs
 }: TickTextProps<TTextAttrs>): JSX.Element => {
   const k = orient === Orientation.TOP || orient === Orientation.LEFT ? -1 : 1;
   const x =
     orient === Orientation.LEFT || orient === Orientation.RIGHT ? "x" : "y";
 
-  const format =
-    tickFormat == null
-      ? scale.tickFormat
-        ? scale.tickFormat(...ticks)
-        : (x: number) => x
-      : tickFormat;
   const spacing = Math.max(+tickSize, 0) + +tickPadding;
 
   const initialAttrs = {
@@ -196,5 +230,6 @@ export const TickText = <TTextAttrs,>({
 
   textAttrs = Object.assign(initialAttrs, textAttrs);
 
-  return <text {...textAttrs}>{format(value)}</text>;
+  const val = tickFormat ? tickFormat(value) : value;
+  return <text {...textAttrs}>{val}</text>;
 };

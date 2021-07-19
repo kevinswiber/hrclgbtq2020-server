@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import * as d3 from "d3";
-import { AxisDomain, Tick, Orientation, TickLine, TickText } from "../d3/Axis";
+import {
+  AxisDomain,
+  BandTick,
+  NumberTick,
+  Orientation,
+  TickLine,
+  TickText,
+} from "../d3/Axis";
 import * as styles from "./IssuesByStateBarChart.module.css";
 import { StateIssue } from "../../typings/types";
 
@@ -30,8 +37,8 @@ export const IssuesByStateBarChart = ({
     .rangeRound([margin.left, width - margin.right]);
 
   const y = d3
-    .scaleBand()
-    .domain(d3.range(data.length).map((d) => d.toString()))
+    .scaleBand<number>()
+    .domain(d3.range(data.length))
     .rangeRound([margin.top, height - margin.bottom])
     .padding(0.1);
 
@@ -93,7 +100,7 @@ export const IssuesByStateBarChart = ({
                   onMouseOut={toggleTooltip(d.policy, { hide: true })}
                   fill={d3.schemeSet1[d.value >= 0 ? 1 : 0]}
                   x={x(Math.min(d.value, 0))}
-                  y={y(i.toString())}
+                  y={y(i)}
                   width={width}
                   height={y.bandwidth()}
                 />
@@ -110,7 +117,11 @@ export const IssuesByStateBarChart = ({
           fontFamily="sans-serif"
           textAnchor="end"
         >
-          <AxisDomain orient={Orientation.LEFT} tickSize={0} scale={y} />
+          <AxisDomain
+            orient={Orientation.LEFT}
+            tickSize={0}
+            range={y.range()}
+          />
           {y.domain().map((d, i) => {
             const orient = Orientation.LEFT;
             const textAttrs: {
@@ -126,7 +137,7 @@ export const IssuesByStateBarChart = ({
             }
 
             return (
-              <Tick
+              <BandTick
                 orient={orient}
                 scale={y}
                 value={d}
@@ -138,7 +149,6 @@ export const IssuesByStateBarChart = ({
                     tickSize={0}
                     tickPadding={5}
                     value={d}
-                    scale={y}
                     tickFormat={yTickFormat}
                     {...textAttrs}
                   />
@@ -158,7 +168,7 @@ export const IssuesByStateBarChart = ({
           {x.domain().map((d) => {
             const orient = Orientation.TOP;
             return (
-              <Tick
+              <NumberTick
                 orient={orient}
                 scale={x}
                 value={d}
@@ -167,8 +177,7 @@ export const IssuesByStateBarChart = ({
                 text={
                   <TickText
                     orient={orient}
-                    value={d.toString()}
-                    scale={x}
+                    value={d}
                     tickFormat={xTickFormat}
                   />
                 }
