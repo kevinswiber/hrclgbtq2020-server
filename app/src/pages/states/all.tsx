@@ -1,30 +1,21 @@
-import React from "react";
-import { graphql } from "gatsby";
-import { Container } from "@material-ui/core";
-import { AllStatesRadialChart } from "../../issues/issues-by-state/AllStatesRadialChart";
-import { StateEqualityIndex } from "../../../typings/types";
+import React, { ReactElement } from "react"
+import { PageProps, graphql } from "gatsby"
+import { Container } from "@material-ui/core"
+import { AllStatesRadialChart } from "../../features/states/all/AllStatesRadialChart"
+import { Data } from "../../definitions/types"
 
-interface IssuesByStatePageProps {
-  data: { sei: StateEqualityIndex };
-}
-
-const AllStatesPage = ({
-  data,
-}: IssuesByStatePageProps): React.ReactElement => {
+const AllStatesPage = ({ data }: PageProps<Data>): ReactElement => {
   return (
     <main>
       <Container maxWidth="md">
         <h1>State policies on LGBTQ+ issues</h1>
-        <AllStatesRadialChart
-          states={data.sei.states.edges}
-          issues={data.sei.issues.edges}
-        />
+        <AllStatesRadialChart {...data.sei} />
       </Container>
     </main>
-  );
-};
+  )
+}
 
-export default AllStatesPage;
+export default AllStatesPage
 
 export const query = graphql`
   query AllStatesPageQuery {
@@ -57,4 +48,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`

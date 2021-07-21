@@ -1,15 +1,15 @@
-import React, { ReactElement } from "react";
-import { graphql } from "gatsby";
-import { Container } from "@material-ui/core";
+import React, { ReactElement } from "react"
+import { graphql, Link } from "gatsby"
+import { Container } from "@material-ui/core"
 
 interface HomePageProps {
   data: {
     site: {
       siteMetadata: {
-        title: string;
-      };
-    };
-  };
+        title: string
+      }
+    }
+  }
 }
 
 const HomePage = ({ data }: HomePageProps): ReactElement => {
@@ -20,25 +20,25 @@ const HomePage = ({ data }: HomePageProps): ReactElement => {
         <div className="divide-y divide-gray-100">
           <ul>
             <li>
-              <a href="/states/all">All States</a>
+              <Link to="/states/all">States</Link>
             </li>
             <li>
-              <a href="/all-states-scatter-plot">All States Scatterplot</a>
+              <Link to="/issues/issues-by-state">Issues by State</Link>
             </li>
             <li>
-              <a href="/issues-bar-chart">Issues Bar Chart</a>
+              <Link to="/issues/scatterplot">Issues Scatterplot</Link>
             </li>
             <li>
-              <a href="/issues/issues-by-state">Issues by State</a>
+              <Link to="/issues/issues-bar-chart">Issues Bar Chart</Link>
             </li>
           </ul>
         </div>
       </Container>
     </main>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage
 
 export const query = graphql`
   query HomePageQuery {
@@ -48,4 +48,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`

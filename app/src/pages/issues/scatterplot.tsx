@@ -1,18 +1,12 @@
-import React from "react";
-import { graphql } from "gatsby";
-import { AllStatesScatterPlotChart } from "../components/charts/AllStatesScatterPlotChart";
-import { Container } from "@material-ui/core";
-import { StateEqualityIndex } from "../typings/types";
+import React, { ReactElement } from "react"
+import { PageProps, graphql } from "gatsby"
+import { AllStatesScatterPlotChart } from "../../features/issues/scatterplot/AllStatesScatterPlotChart"
+import { Container } from "@material-ui/core"
+import { Data } from "../../definitions/types"
 
-interface AllStatesScatterPlotPageProps {
-  data: { sei: StateEqualityIndex };
-}
-
-const AllStatesScatterPlotPage = ({
-  data,
-}: AllStatesScatterPlotPageProps): React.ReactElement => {
-  const states = data.sei.states.edges.map((s) => s.node);
-  const issues = data.sei.issues.edges.map((i) => i.node);
+const AllStatesScatterPlotPage = ({ data }: PageProps<Data>): ReactElement => {
+  const states = data.sei.states.edges.map(s => s.node)
+  const issues = data.sei.issues.edges.map(i => i.node)
 
   return (
     <main>
@@ -21,10 +15,10 @@ const AllStatesScatterPlotPage = ({
         <AllStatesScatterPlotChart states={states} issues={issues} />
       </Container>
     </main>
-  );
-};
+  )
+}
 
-export default AllStatesScatterPlotPage;
+export default AllStatesScatterPlotPage
 
 export const query = graphql`
   query AllStatesScatterPlotPageQuery {
@@ -57,4 +51,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`

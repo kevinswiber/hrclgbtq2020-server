@@ -1,3 +1,7 @@
+export interface Data {
+  sei: StateEqualityIndex
+}
+
 export interface StateIssue {
   kind: string
   name: string
@@ -8,6 +12,7 @@ export interface StateIssue {
 export interface State {
   id: string
   name: string
+  region: string
   issues: Array<StateIssue>
 }
 
@@ -29,6 +34,6 @@ export interface StateEqualityIndex {
     edges: Array<{ node: State }>
   }
   issues: {
-    edges: Array<{node: Issue }>
+    edges: Array<{ node: Issue }>
   }
 }

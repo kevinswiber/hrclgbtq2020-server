@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import * as d3 from "d3";
+import React, { useState } from "react"
+import * as d3 from "d3"
 import {
   AxisDomain,
   BandTick,
@@ -7,14 +7,14 @@ import {
   Orientation,
   TickLine,
   TickText,
-} from "../../../components/d3/Axis";
-import * as styles from "./IssuesByStateBarChart.module.css";
-import { StateIssue } from "../../../typings/types";
+} from "../../../common/d3/Axis"
+import * as styles from "./IssuesByStateBarChart.module.css"
+import { StateIssue } from "../../../definitions/types"
 
 export const IssuesByStateBarChart = ({
   data,
 }: {
-  data: Array<StateIssue>;
+  data: Array<StateIssue>
 }): React.ReactElement => {
   const [tooltip, setTooltip] = useState({
     style: {
@@ -23,59 +23,59 @@ export const IssuesByStateBarChart = ({
       opacity: 0,
     },
     text: "",
-  });
+  })
 
-  const margin = { top: 30, right: 60, bottom: 10, left: 60 };
-  const barHeight = 25;
+  const margin = { top: 30, right: 60, bottom: 10, left: 60 }
+  const barHeight = 25
   const height =
-    Math.ceil((data.length + 0.1) * barHeight) + margin.top + margin.bottom;
-  const width = 700;
+    Math.ceil((data.length + 0.1) * barHeight) + margin.top + margin.bottom
+  const width = 700
 
   const x = d3
     .scaleLinear()
     .domain([-6, 6])
-    .rangeRound([margin.left, width - margin.right]);
+    .rangeRound([margin.left, width - margin.right])
 
   const y = d3
     .scaleBand<number>()
     .domain(d3.range(data.length))
     .rangeRound([margin.top, height - margin.bottom])
-    .padding(0.1);
+    .padding(0.1)
 
-  const yTickFormat = (i: number) => data[i].name;
+  const yTickFormat = (i: number) => data[i].name
 
-  const xTickLabels = ["Anti-LGBTQ", "Pro-LGBTQ"];
+  const xTickLabels = ["Anti-LGBTQ", "Pro-LGBTQ"]
   const xTickFormat = (i: number) => {
     return xTickLabels[
       x
         .domain()
-        .map((d) => d.toString())
+        .map(d => d.toString())
         .indexOf(i.toString())
-    ];
-  };
+    ]
+  }
 
   const toggleTooltip = (
     text: string,
     options: { hide: boolean } = { hide: false }
   ) => {
     return () => {
-      const opacity = options.hide ? 0 : 1;
-      setTooltip((prevTooltip) => ({
+      const opacity = options.hide ? 0 : 1
+      setTooltip(prevTooltip => ({
         ...prevTooltip,
         style: { ...prevTooltip.style, opacity },
         text,
-      }));
-    };
-  };
+      }))
+    }
+  }
 
-  const placeTooltip = (ev) => {
-    const left = ev.clientX + 20;
-    const top = ev.clientY;
-    setTooltip((prevTooltip) => ({
+  const placeTooltip = ev => {
+    const left = ev.clientX + 20
+    const top = ev.clientY
+    setTooltip(prevTooltip => ({
       ...prevTooltip,
       style: { ...prevTooltip.style, left, top },
-    }));
-  };
+    }))
+  }
 
   return (
     <div id="issues-by-state-chart">
@@ -85,9 +85,9 @@ export const IssuesByStateBarChart = ({
       <svg viewBox={`0,0,${width},${height}`}>
         <g key="bars">
           {data.map((d, i) => {
-            let width = Math.abs(x(d.value) - x(0));
+            let width = Math.abs(x(d.value) - x(0))
             if (width === 0) {
-              width = 2;
+              width = 2
             }
 
             return (
@@ -106,7 +106,7 @@ export const IssuesByStateBarChart = ({
                 />
                 {/*<title>{d.policy}</title>*/}
               </g>
-            );
+            )
           })}
         </g>
 
@@ -123,17 +123,17 @@ export const IssuesByStateBarChart = ({
             range={y.range()}
           />
           {y.domain().map((d, i) => {
-            const orient = Orientation.LEFT;
+            const orient = Orientation.LEFT
             const textAttrs: {
-              textAnchor?: string;
-              x?: number;
-              className: string;
+              textAnchor?: string
+              x?: number
+              className: string
             } = {
               className: styles.issue,
-            };
+            }
             if (data[i].value <= 0) {
-              textAttrs.textAnchor = "start";
-              textAttrs.x = 6;
+              textAttrs.textAnchor = "start"
+              textAttrs.x = 6
             }
 
             return (
@@ -153,7 +153,7 @@ export const IssuesByStateBarChart = ({
                   {...textAttrs}
                 />
               </BandTick>
-            );
+            )
           })}
         </g>
 
@@ -164,8 +164,8 @@ export const IssuesByStateBarChart = ({
           fontFamily="sans-serif"
           textAnchor="middle"
         >
-          {x.domain().map((d) => {
-            const orient = Orientation.TOP;
+          {x.domain().map(d => {
+            const orient = Orientation.TOP
             return (
               <NumberTick
                 orient={orient}
@@ -176,10 +176,10 @@ export const IssuesByStateBarChart = ({
                 <TickLine orient={orient} />
                 <TickText orient={orient} value={d} tickFormat={xTickFormat} />
               </NumberTick>
-            );
+            )
           })}
         </g>
       </svg>
     </div>
-  );
-};
+  )
+}
