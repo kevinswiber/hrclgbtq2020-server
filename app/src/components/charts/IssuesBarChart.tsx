@@ -1,4 +1,3 @@
+import React from "react";
 
-import React from 'react';
-
-export const IssuesBarChart = (): JSX.Element => <div/>;
+export const IssuesBarChart = (): React.ReactElement => <div />;

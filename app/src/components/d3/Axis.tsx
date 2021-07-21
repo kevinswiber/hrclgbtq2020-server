@@ -1,5 +1,11 @@
-import { NumberValue, ScaleBand, ScaleContinuousNumeric, ScalePoint } from "d3";
-import React from "react";
+import {
+  NumberValue,
+  ScaleBand,
+  ScaleContinuousNumeric,
+  ScaleOrdinal,
+  ScalePoint,
+} from "d3";
+import React, { ReactElement } from "react";
 
 export enum Orientation {
   TOP = 1,
@@ -16,21 +22,6 @@ function translateY(y: number) {
   return "translate(0," + y + ")";
 }
 
-function number<TRange, TOutput, TUnknown>(
-  scale: ScaleContinuousNumeric<TRange, TOutput, TUnknown>
-) {
-  return (d: NumberValue) => +scale(d);
-}
-
-function center<TDomain>(
-  scale: ScaleBand<TDomain> | ScalePoint<TDomain>,
-  offset: number
-) {
-  offset = Math.max(0, scale.bandwidth() - offset * 2) / 2;
-  if (scale.round()) offset = Math.round(offset);
-  return (d: TDomain) => +(scale(d) || 0) + offset;
-}
-
 interface AxisDomainProps<TRange, TAttrs> {
   orient: number;
   range: TRange[];
@@ -43,7 +34,7 @@ export const AxisDomain = <TRange, TAttrs>({
   range,
   tickSize,
   ...pathAttrs
-}: AxisDomainProps<TRange, TAttrs>): JSX.Element => {
+}: AxisDomainProps<TRange, TAttrs>): ReactElement => {
   tickSize = tickSize === null || tickSize === undefined ? 6 : tickSize;
   const offset =
     typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
@@ -94,28 +85,72 @@ export const AxisDomain = <TRange, TAttrs>({
 
 interface BandTickProps<TDomain, TickAttrs> {
   orient: Orientation;
-  scale: ScaleBand<TDomain> | ScalePoint<TDomain>;
+  d3Scale: ScaleBand<TDomain> | ScalePoint<TDomain>;
   value: TDomain;
-  line: JSX.Element;
-  text: JSX.Element;
+  line: ReactElement;
+  text: ReactElement;
   tickAttrs?: TickAttrs;
 }
 
 export const BandTick = <TDomain, TickAttrs>({
   orient,
-  scale,
+  d3Scale,
   value,
   line,
   text,
   ...tickAttrs
-}: BandTickProps<TDomain, TickAttrs>): JSX.Element => {
+}: BandTickProps<TDomain, TickAttrs> &
+  React.SVGProps<SVGGElement>): ReactElement => {
   const offset =
     typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
   const transform =
     orient === Orientation.TOP || orient === Orientation.BOTTOM
       ? translateX
       : translateY;
-  const position = center(scale.copy(), offset);
+
+  const scaleCopy = d3Scale.copy();
+  let bandOffset = Math.max(0, scaleCopy.bandwidth() - offset * 2) / 2;
+  if (scaleCopy.round()) bandOffset = Math.round(bandOffset);
+  const position = (d: TDomain) => +(scaleCopy(d) || 0) + bandOffset;
+
+  return (
+    <g
+      className="tick"
+      opacity="1"
+      transform={transform(position(value) + offset)}
+      {...tickAttrs}
+    >
+      {line}
+      {text}
+    </g>
+  );
+};
+
+interface OrdinalTickProps<TDomain, TRange, TUnknown, TickAttrs> {
+  orient: Orientation;
+  d3Scale: ScaleOrdinal<TDomain, TRange, TUnknown>;
+  value: TDomain;
+  line: ReactElement;
+  text: ReactElement;
+  tickAttrs?: TickAttrs;
+}
+
+export const OrdinalTick = <TDomain, TRange, TUnknown, TickAttrs>({
+  orient,
+  d3Scale,
+  value,
+  line,
+  text,
+  ...tickAttrs
+}: OrdinalTickProps<TDomain, TRange, TUnknown, TickAttrs> &
+  React.SVGProps<SVGGElement>): ReactElement => {
+  const offset =
+    typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
+  const transform =
+    orient === Orientation.TOP || orient === Orientation.BOTTOM
+      ? translateX
+      : translateY;
+  const position = (d: TDomain) => +d3Scale(d);
 
   return (
     <g
@@ -132,28 +167,29 @@ export const BandTick = <TDomain, TickAttrs>({
 
 interface NumberTickProps<TRange, TOutput, TUnknown, TickAttrs> {
   orient: Orientation;
-  scale: ScaleContinuousNumeric<TRange, TOutput, TUnknown>;
+  d3Scale: ScaleContinuousNumeric<TRange, TOutput, TUnknown>;
   value: NumberValue;
-  line: JSX.Element;
-  text: JSX.Element;
+  line: ReactElement;
+  text: ReactElement;
   tickAttrs?: TickAttrs;
 }
 
 export const NumberTick = <TRange, TOutput, TUnknown, TickAttrs>({
   orient,
-  scale,
+  d3Scale,
   value,
   line,
   text,
   ...tickAttrs
-}: NumberTickProps<TRange, TOutput, TUnknown, TickAttrs>): JSX.Element => {
+}: NumberTickProps<TRange, TOutput, TUnknown, TickAttrs> &
+  React.SVGProps<SVGGElement>): ReactElement => {
   const offset =
     typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
   const transform =
     orient === Orientation.TOP || orient === Orientation.BOTTOM
       ? translateX
       : translateY;
-  const position = number(scale.copy());
+  const position = (d: NumberValue) => +d3Scale(d);
 
   return (
     <g
@@ -168,7 +204,7 @@ export const NumberTick = <TRange, TOutput, TUnknown, TickAttrs>({
   );
 };
 
-interface TickLineProps<TLineAttrs> {
+interface TickLineProps<TLineAttrs> extends React.SVGProps<SVGLineElement> {
   orient: Orientation;
   tickSize?: number;
   lineAttrs?: TLineAttrs;
@@ -177,7 +213,7 @@ export const TickLine = <TLineAttrs,>({
   orient,
   tickSize = 6,
   ...lineAttrs
-}: TickLineProps<TLineAttrs>): JSX.Element => {
+}: TickLineProps<TLineAttrs>): ReactElement => {
   const k = orient === Orientation.TOP || orient === Orientation.LEFT ? -1 : 1;
   const x =
     orient === Orientation.LEFT || orient === Orientation.RIGHT ? "x" : "y";
@@ -192,25 +228,26 @@ export const TickLine = <TLineAttrs,>({
   return <line {...lineAttrsDerived} />;
 };
 
-interface TickTextProps<TTextAttrs> {
+interface TickTextProps<TDomain, TTextAttrs>
+  extends React.SVGProps<SVGTextElement> {
   orient: Orientation;
   tickSize?: number;
   tickPadding?: number;
-  tickFormat?(count?: number): string;
-  value: number;
+  tickFormat?(count?: TDomain): string;
+  value: TDomain;
   textAttrs?: TTextAttrs;
 }
 
 // For tickFormat, library consumers should use scale.tickFormat(...ticks)
 // if no custom format exists.
-export const TickText = <TTextAttrs,>({
+export const TickText = <TDomain, TTextAttrs>({
   orient,
   tickSize = 6,
   tickPadding = 3,
   tickFormat,
   value,
   ...textAttrs
-}: TickTextProps<TTextAttrs>): JSX.Element => {
+}: TickTextProps<TDomain, TTextAttrs>): ReactElement => {
   const k = orient === Orientation.TOP || orient === Orientation.LEFT ? -1 : 1;
   const x =
     orient === Orientation.LEFT || orient === Orientation.RIGHT ? "x" : "y";

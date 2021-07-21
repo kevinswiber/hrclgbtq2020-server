@@ -1,14 +1,16 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import { AllStatesScatterPlotChart } from '../components/charts/AllStatesScatterPlotChart';
-import { Container } from '@material-ui/core';
-import { StateEqualityIndex } from '../typings/types';
+import React from "react";
+import { graphql } from "gatsby";
+import { AllStatesScatterPlotChart } from "../components/charts/AllStatesScatterPlotChart";
+import { Container } from "@material-ui/core";
+import { StateEqualityIndex } from "../typings/types";
 
 interface AllStatesScatterPlotPageProps {
-  data: { sei: StateEqualityIndex }
+  data: { sei: StateEqualityIndex };
 }
 
-const AllStatesScatterPlotPage = ({ data }: AllStatesScatterPlotPageProps): JSX.Element => {
+const AllStatesScatterPlotPage = ({
+  data,
+}: AllStatesScatterPlotPageProps): React.ReactElement => {
   const states = data.sei.states.edges.map((s) => s.node);
   const issues = data.sei.issues.edges.map((i) => i.node);
 
@@ -16,12 +18,10 @@ const AllStatesScatterPlotPage = ({ data }: AllStatesScatterPlotPageProps): JSX.
     <main>
       <Container maxWidth="lg">
         <h1>State Equality Index 2020 - All States</h1>
-        <AllStatesScatterPlotChart
-          states={states}
-          issues={issues} />
+        <AllStatesScatterPlotChart states={states} issues={issues} />
       </Container>
     </main>
-  )
+  );
 };
 
 export default AllStatesScatterPlotPage;

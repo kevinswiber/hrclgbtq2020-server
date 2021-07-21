@@ -15,7 +15,7 @@ export const IssuesByStateBarChart = ({
   data,
 }: {
   data: Array<StateIssue>;
-}): JSX.Element => {
+}): React.ReactElement => {
   const [tooltip, setTooltip] = useState({
     style: {
       left: 0,
@@ -139,7 +139,7 @@ export const IssuesByStateBarChart = ({
             return (
               <BandTick
                 orient={orient}
-                scale={y}
+                d3Scale={y}
                 value={d}
                 key={data[i].kind}
                 line={<TickLine orient={orient} tickSize={0} />}
@@ -170,7 +170,7 @@ export const IssuesByStateBarChart = ({
             return (
               <NumberTick
                 orient={orient}
-                scale={x}
+                d3Scale={x}
                 value={d}
                 key={`x-axis-${d}`}
                 line={<TickLine orient={orient} />}

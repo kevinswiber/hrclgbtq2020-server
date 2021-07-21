@@ -47,7 +47,9 @@ interface IssuesByStatePageProps {
   location: HLocation;
 }
 
-const IssuesByStatePage = (props: IssuesByStatePageProps): JSX.Element => {
+const IssuesByStatePage = (
+  props: IssuesByStatePageProps
+): React.ReactElement => {
   const [current, setCurrent] = useState<string>();
   const states = props.data.sei.states.edges.map((s) => s.node);
   const classes = useStyles();

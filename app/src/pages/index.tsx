@@ -1,18 +1,18 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import { Container } from '@material-ui/core';
+import React, { ReactElement } from "react";
+import { graphql } from "gatsby";
+import { Container } from "@material-ui/core";
 
 interface HomePageProps {
   data: {
     site: {
       siteMetadata: {
-        title: string
-      }
-    }
-  }
+        title: string;
+      };
+    };
+  };
 }
 
-const HomePage = ({ data }: HomePageProps): JSX.Element => {
+const HomePage = ({ data }: HomePageProps): ReactElement => {
   return (
     <main>
       <Container maxWidth="md">
@@ -33,9 +33,9 @@ const HomePage = ({ data }: HomePageProps): JSX.Element => {
             </li>
           </ul>
         </div>
-        </Container>
+      </Container>
     </main>
-  )
+  );
 };
 
 export default HomePage;
