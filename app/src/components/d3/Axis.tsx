@@ -87,8 +87,6 @@ interface BandTickProps<TDomain, TickAttrs> {
   orient: Orientation;
   d3Scale: ScaleBand<TDomain> | ScalePoint<TDomain>;
   value: TDomain;
-  line: ReactElement;
-  text: ReactElement;
   tickAttrs?: TickAttrs;
 }
 
@@ -96,8 +94,7 @@ export const BandTick = <TDomain, TickAttrs>({
   orient,
   d3Scale,
   value,
-  line,
-  text,
+  children,
   ...tickAttrs
 }: BandTickProps<TDomain, TickAttrs> &
   React.SVGProps<SVGGElement>): ReactElement => {
@@ -120,8 +117,9 @@ export const BandTick = <TDomain, TickAttrs>({
       transform={transform(position(value) + offset)}
       {...tickAttrs}
     >
-      {line}
-      {text}
+      {children}
+      {/*{line}
+      {text}*/}
     </g>
   );
 };
@@ -130,8 +128,6 @@ interface OrdinalTickProps<TDomain, TRange, TUnknown, TickAttrs> {
   orient: Orientation;
   d3Scale: ScaleOrdinal<TDomain, TRange, TUnknown>;
   value: TDomain;
-  line: ReactElement;
-  text: ReactElement;
   tickAttrs?: TickAttrs;
 }
 
@@ -139,8 +135,7 @@ export const OrdinalTick = <TDomain, TRange, TUnknown, TickAttrs>({
   orient,
   d3Scale,
   value,
-  line,
-  text,
+  children,
   ...tickAttrs
 }: OrdinalTickProps<TDomain, TRange, TUnknown, TickAttrs> &
   React.SVGProps<SVGGElement>): ReactElement => {
@@ -159,8 +154,7 @@ export const OrdinalTick = <TDomain, TRange, TUnknown, TickAttrs>({
       transform={transform(position(value) + offset)}
       {...tickAttrs}
     >
-      {line}
-      {text}
+      {children}
     </g>
   );
 };
@@ -169,8 +163,6 @@ interface NumberTickProps<TRange, TOutput, TUnknown, TickAttrs> {
   orient: Orientation;
   d3Scale: ScaleContinuousNumeric<TRange, TOutput, TUnknown>;
   value: NumberValue;
-  line: ReactElement;
-  text: ReactElement;
   tickAttrs?: TickAttrs;
 }
 
@@ -178,8 +170,7 @@ export const NumberTick = <TRange, TOutput, TUnknown, TickAttrs>({
   orient,
   d3Scale,
   value,
-  line,
-  text,
+  children,
   ...tickAttrs
 }: NumberTickProps<TRange, TOutput, TUnknown, TickAttrs> &
   React.SVGProps<SVGGElement>): ReactElement => {
@@ -198,8 +189,7 @@ export const NumberTick = <TRange, TOutput, TUnknown, TickAttrs>({
       transform={transform(position(value) + offset)}
       {...tickAttrs}
     >
-      {line}
-      {text}
+      {children}
     </g>
   );
 };

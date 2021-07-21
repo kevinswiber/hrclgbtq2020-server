@@ -142,18 +142,17 @@ export const IssuesByStateBarChart = ({
                 d3Scale={y}
                 value={d}
                 key={data[i].kind}
-                line={<TickLine orient={orient} tickSize={0} />}
-                text={
-                  <TickText
-                    orient={orient}
-                    tickSize={0}
-                    tickPadding={5}
-                    value={d}
-                    tickFormat={yTickFormat}
-                    {...textAttrs}
-                  />
-                }
-              />
+              >
+                <TickLine orient={orient} tickSize={0} />
+                <TickText
+                  orient={orient}
+                  tickSize={0}
+                  tickPadding={5}
+                  value={d}
+                  tickFormat={yTickFormat}
+                  {...textAttrs}
+                />
+              </BandTick>
             );
           })}
         </g>
@@ -173,15 +172,10 @@ export const IssuesByStateBarChart = ({
                 d3Scale={x}
                 value={d}
                 key={`x-axis-${d}`}
-                line={<TickLine orient={orient} />}
-                text={
-                  <TickText
-                    orient={orient}
-                    value={d}
-                    tickFormat={xTickFormat}
-                  />
-                }
-              />
+              >
+                <TickLine orient={orient} />
+                <TickText orient={orient} value={d} tickFormat={xTickFormat} />
+              </NumberTick>
             );
           })}
         </g>

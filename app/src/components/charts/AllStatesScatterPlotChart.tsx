@@ -108,25 +108,18 @@ export const AllStatesScatterPlotChart = (props): React.ReactElement => {
         >
           {y.domain().map((issue) => {
             return (
-              <BandTick
-                orient={yAxisOrientation}
-                d3Scale={y}
-                value={issue}
-                line={
-                  <TickLine
-                    orient={
-                      yAxisOrientation
-                    } /*tickSize={-height + margin.top} style={{ stroke: '#bbb', strokeWidth: 0.5, strokeDashArray: '4, 2' }}*/
-                  />
-                }
-                text={
-                  <TickText
-                    orient={yAxisOrientation}
-                    value={issue}
-                    fontSize="10"
-                  />
-                }
-              />
+              <BandTick orient={yAxisOrientation} d3Scale={y} value={issue}>
+                <TickLine
+                  orient={
+                    yAxisOrientation
+                  } /*tickSize={-height + margin.top} style={{ stroke: '#bbb', strokeWidth: 0.5, strokeDashArray: '4, 2' }}*/
+                />
+                <TickText
+                  orient={yAxisOrientation}
+                  value={issue}
+                  fontSize="10"
+                />
+              </BandTick>
             );
           })}
         </g>
@@ -158,20 +151,15 @@ export const AllStatesScatterPlotChart = (props): React.ReactElement => {
         >
           {x.ticks().map((value) => {
             return (
-              <NumberTick
-                orient={xAxisOrientation}
-                d3Scale={x}
-                value={value}
-                line={<TickLine orient={xAxisOrientation} strokeWidth="0.7" />}
-                text={
-                  <TickText
-                    orient={xAxisOrientation}
-                    value={value}
-                    fontSize="8"
-                    tickPadding={0}
-                  />
-                }
-              />
+              <NumberTick orient={xAxisOrientation} d3Scale={x} value={value}>
+                <TickLine orient={xAxisOrientation} strokeWidth="0.7" />
+                <TickText
+                  orient={xAxisOrientation}
+                  value={value}
+                  fontSize="8"
+                  tickPadding={0}
+                />
+              </NumberTick>
             );
           })}
         </g>
