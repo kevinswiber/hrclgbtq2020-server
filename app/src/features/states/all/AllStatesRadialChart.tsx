@@ -120,7 +120,7 @@ export const AllStatesRadialChart = (
     .padRadius(innerRadius);
 
   const color = d3
-    .scaleOrdinal()
+    .scaleOrdinal<string>()
     .domain(categories)
     .range(d3.schemeCategory10)
     .unknown("rgb(234,234,234)");
@@ -157,7 +157,7 @@ export const AllStatesRadialChart = (
                 <path
                   d={arc(d) as string}
                   stroke="white"
-                  fill={color(d.category) as string}
+                  fill={color(d.category)}
                   fillOpacity={
                     ((policy_values[d.category].indexOf(d.value) + 1) /
                       policy_values[d.category].length) *
@@ -258,7 +258,7 @@ export const AllStatesRadialChart = (
                   (i - (categories.length - 1) / 2) * 20
                 })`}
               >
-                <rect width="18" height="18" fill={color(d) as string} />
+                <rect width="18" height="18" fill={color(d)} />
                 <text
                   style={{ font: "11px sans-serif" }}
                   x="24"
