@@ -16,9 +16,9 @@ import {
   TableRow,
   makeStyles,
 } from "@material-ui/core";
-import { IssuesByStateBarChart } from "../components/charts/IssuesByStateBarChart";
+import { IssuesByStateBarChart } from "./IssuesByStateBarChart";
 import * as pageStyles from "./issues-by-state.module.css";
-import { StateEqualityIndex } from "../typings/types";
+import { StateEqualityIndex } from "../../../typings/types";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {

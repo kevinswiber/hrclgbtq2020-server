@@ -20,7 +20,7 @@ const HomePage = ({ data }: HomePageProps): ReactElement => {
         <div className="divide-y divide-gray-100">
           <ul>
             <li>
-              <a href="/all-states">All States</a>
+              <a href="/states/all">All States</a>
             </li>
             <li>
               <a href="/all-states-scatter-plot">All States Scatterplot</a>
@@ -29,7 +29,7 @@ const HomePage = ({ data }: HomePageProps): ReactElement => {
               <a href="/issues-bar-chart">Issues Bar Chart</a>
             </li>
             <li>
-              <a href="/issues-by-state">Issues by State</a>
+              <a href="/issues/issues-by-state">Issues by State</a>
             </li>
           </ul>
         </div>

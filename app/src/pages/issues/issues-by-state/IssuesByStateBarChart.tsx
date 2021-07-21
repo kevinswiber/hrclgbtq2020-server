@@ -7,9 +7,9 @@ import {
   Orientation,
   TickLine,
   TickText,
-} from "../d3/Axis";
+} from "../../../components/d3/Axis";
 import * as styles from "./IssuesByStateBarChart.module.css";
-import { StateIssue } from "../../typings/types";
+import { StateIssue } from "../../../typings/types";
 
 export const IssuesByStateBarChart = ({
   data,
