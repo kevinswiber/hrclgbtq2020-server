@@ -6,7 +6,7 @@ import {
   TickLine,
   TickText,
 } from "../../../common/d3/Axis";
-import * as styles from "./IssuesByStateBarChart.module.css";
+import * as styles from "./Chart.module.css";
 import { StateIssue } from "../../../definitions/types";
 
 export interface IssueAxisProps {

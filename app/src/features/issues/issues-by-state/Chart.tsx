@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import * as d3 from "d3";
-import * as styles from "./IssuesByStateBarChart.module.css";
+import * as styles from "./Chart.module.css";
 import { StateIssue } from "../../../definitions/types";
 import { ValueAxis } from "./ValueAxis";
 import { IssueAxis } from "./IssueAxis";
-import { Tooltip, ValueBars } from "./ValueBars";
+import { Tooltip, Bars } from "./Bars";
 
-export const IssuesByStateBarChart = ({
+export const Chart = ({
   data,
 }: {
   data: Array<StateIssue>;
@@ -43,7 +43,7 @@ export const IssuesByStateBarChart = ({
         {tooltip.text}
       </div>
       <svg viewBox={`0,0,${width},${height}`}>
-        <ValueBars data={data} x={x} y={y} setTooltip={setTooltip} />
+        <Bars data={data} x={x} y={y} setTooltip={setTooltip} />
         <IssueAxis data={data} x={x} y={y} />
         <ValueAxis x={x} margin={margin} />
       </svg>

@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import * as d3 from "d3";
-import * as styles from "./IssuesByStateBarChart.module.css";
+import * as styles from "./Chart.module.css";
 import { StateIssue } from "../../../definitions/types";
 
 export interface Tooltip {
@@ -12,19 +12,19 @@ export interface Tooltip {
   text: string;
 }
 
-export interface ValueBarsProps {
+export interface BarsProps {
   data: StateIssue[];
   x: d3.ScaleLinear<number, number, never>;
   y: d3.ScaleBand<number>;
   setTooltip: Dispatch<SetStateAction<Tooltip>>;
 }
 
-export const ValueBars = ({
+export const Bars = ({
   data,
   x,
   y,
   setTooltip,
-}: ValueBarsProps): React.ReactElement => {
+}: BarsProps): React.ReactElement => {
   const toggleTooltip = (
     text: string,
     options: { hide: boolean } = { hide: false }
