@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import React, { ReactElement, useEffect, useState } from "react";
-import { PageProps, graphql } from "gatsby";
+import { PageProps, graphql, navigate } from "gatsby";
 import {
   Container,
   FormControl,
@@ -15,6 +15,7 @@ import {
   TableRow,
   makeStyles,
 } from "@material-ui/core";
+import * as queryString from "query-string";
 import { Chart } from "../../features/issues/issues-by-state/Chart";
 import * as pageStyles from "./issues-by-state.module.css";
 import { Data } from "../../definitions/types";
@@ -47,15 +48,20 @@ const IssuesByStatePage = (props: PageProps<Data>): ReactElement => {
   const classes = useStyles();
 
   useEffect(() => {
-    const currentState =
-      props.location.hash.length > 2 ? props.location.hash.slice(2) : "";
+    let currentState = "";
+    if (props.location.search) {
+      const parsed = queryString.parse(props.location.search);
+      if (parsed.state) {
+        currentState = parsed.state as string;
+      }
+    }
 
     setCurrent(currentState);
   });
 
   const change = (value: string) => {
     setCurrent(value);
-    window.location.hash = `#!${value}`;
+    navigate(`${props.location.pathname}?state=${value}`, { state: value });
   };
 
   const sorted = states.sort((a, b) => d3.ascending(a.name, b.name));
