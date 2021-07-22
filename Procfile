@@ -1,2 +1,1 @@
-api: ./target/release/hrclgbtq2020server
-web: bin/boot .
+web: ./target/release/hrclgbtq2020server
