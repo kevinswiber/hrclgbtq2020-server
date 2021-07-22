@@ -28,9 +28,6 @@ const HomePage = ({ data }: HomePageProps): ReactElement => {
             <li>
               <Link to="/issues/scatterplot">Issues Scatterplot</Link>
             </li>
-            <li>
-              <Link to="/issues/issues-bar-chart">Issues Bar Chart</Link>
-            </li>
           </ul>
         </div>
       </Container>
