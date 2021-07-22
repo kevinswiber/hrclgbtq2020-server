@@ -1,8 +1,8 @@
-import React, { ReactElement } from "react"
-import { PageProps, graphql } from "gatsby"
-import { Container } from "@material-ui/core"
-import { AllStatesRadialChart } from "../../features/states/all/AllStatesRadialChart"
-import { Data } from "../../definitions/types"
+import React, { ReactElement } from "react";
+import { PageProps, graphql } from "gatsby";
+import { Container } from "@material-ui/core";
+import { AllStatesRadialChart } from "../../features/states/all/AllStatesRadialChart";
+import { Data } from "../../definitions/types";
 
 const AllStatesPage = ({ data }: PageProps<Data>): ReactElement => {
   return (
@@ -12,10 +12,10 @@ const AllStatesPage = ({ data }: PageProps<Data>): ReactElement => {
         <AllStatesRadialChart {...data.sei} />
       </Container>
     </main>
-  )
-}
+  );
+};
 
-export default AllStatesPage
+export default AllStatesPage;
 
 export const query = graphql`
   query AllStatesPageQuery {
@@ -48,4 +48,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

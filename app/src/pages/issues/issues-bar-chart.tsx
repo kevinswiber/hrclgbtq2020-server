@@ -1,17 +1,17 @@
-import React from "react"
-import { PageProps, graphql } from "gatsby"
+import React from "react";
+import { PageProps, graphql } from "gatsby";
 //import { IssuesBarChart } from '../components/charts/IssuesBarChart';
-import { Container } from "@material-ui/core"
-import { StateEqualityIndex } from "../../definitions/types"
+import { Container } from "@material-ui/core";
+import { StateEqualityIndex } from "../../definitions/types";
 
 interface Data {
-  sei: StateEqualityIndex
+  sei: StateEqualityIndex;
 }
 
 const IssuesBarChartPage = ({ data }: PageProps<Data>): React.ReactElement => {
-  const states = data.sei.states.edges.map(s => s.node)
+  const states = data.sei.states.edges.map(s => s.node);
   //const issues = data.sei.issues.edges.map((i) => i.node);
-  console.log(states)
+  console.log(states);
 
   return (
     <main>
@@ -22,10 +22,10 @@ const IssuesBarChartPage = ({ data }: PageProps<Data>): React.ReactElement => {
         issues={issues} />*/}
       </Container>
     </main>
-  )
-}
+  );
+};
 
-export default IssuesBarChartPage
+export default IssuesBarChartPage;
 
 export const query = graphql`
   query IssuesBarChartPageQuery {
@@ -66,4 +66,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;
