@@ -1,2 +1,2 @@
-graphql: ./target/release/hrclgbtq2020server
+api: ./target/release/hrclgbtq2020server
 web: bin/boot .
