@@ -1,39 +1,39 @@
 export interface Data {
-  sei: StateEqualityIndex
+  sei: StateEqualityIndex;
 }
 
 export interface StateIssue {
-  kind: string
-  name: string
-  policy: string
-  value: number
+  kind: string;
+  name: string;
+  policy: string;
+  value: number;
 }
 
 export interface State {
-  id: string
-  name: string
-  region: string
-  issues: Array<StateIssue>
+  id: string;
+  name: string;
+  region: string;
+  issues: Array<StateIssue>;
 }
 
 export interface IssueState {
-  id: string
-  name: string
-  policy: string
-  value: number
+  id: string;
+  name: string;
+  policy: string;
+  value: number;
 }
 
 export interface Issue {
-  id: string
-  name: string
-  states: Array<IssueState>
+  id: string;
+  name: string;
+  states: Array<IssueState>;
 }
 
 export interface StateEqualityIndex {
   states: {
-    edges: Array<{ node: State }>
-  }
+    edges: Array<{ node: State }>;
+  };
   issues: {
-    edges: Array<{ node: Issue }>
-  }
+    edges: Array<{ node: Issue }>;
+  };
 }
