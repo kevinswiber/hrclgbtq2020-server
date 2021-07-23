@@ -33,9 +33,10 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 60,
   },
   table: {
-    minWidth: 650,
+    minWidth: 300,
   },
-  tableLinks: {
+  stateLinks: {
+    marginTop: 40,
     marginBottom: 40,
   },
 }));
@@ -55,10 +56,12 @@ const IssuesByStatePage = (props: PageProps<Data>): ReactElement => {
   let browserHistory: BrowserHistory;
 
   useEffect(() => {
-    browserHistory = createBrowserHistory();
-    if (!current) {
+    if (!browserHistory) {
+      browserHistory = createBrowserHistory();
+    }
+
+    if (!current && current !== "") {
       const parts = props.location.pathname.split("/");
-      console.log(parts);
       const currentState = parts[parts.length - 2];
 
       setCurrent(currentState !== "issues-by-state" ? currentState : "");
@@ -67,7 +70,8 @@ const IssuesByStatePage = (props: PageProps<Data>): ReactElement => {
 
   const change = (value: string) => {
     setCurrent(value);
-    browserHistory.push(`/issues/issues-by-state/${value}/`, { state: value });
+    const endPath = value ? `${value}/` : "";
+    browserHistory.push(`/issues/issues-by-state/${endPath}`, { state: value });
   };
 
   const sorted = states.sort((a, b) => d3.ascending(a.name, b.name));
@@ -103,6 +107,24 @@ const IssuesByStatePage = (props: PageProps<Data>): ReactElement => {
     </FormControl>
   );
 
+  const stateLinks = (
+    <Container className={classes.stateLinks}>
+      {states.map((state, i) => {
+        return (
+          <>
+            <Link
+              key={state.id}
+              to={`/issues/issues-by-state/${slugify(state.name)}/`}
+            >
+              {state.name}
+            </Link>
+            {i < states.length - 1 && <span> | </span>}
+          </>
+        );
+      })}
+    </Container>
+  );
+
   const data =
     current && current !== ""
       ? states.find(s => s.name === slugMap[current])
@@ -112,6 +134,7 @@ const IssuesByStatePage = (props: PageProps<Data>): ReactElement => {
     <Container maxWidth="md">
       <h2>{(data && data.name) || ""} State policies for LGBTQ+ issues</h2>
       {select}
+      {!data && stateLinks}
       {data && (
         <div>
           <Chart data={data.issues} />
@@ -137,12 +160,13 @@ const IssuesByStatePage = (props: PageProps<Data>): ReactElement => {
               </TableBody>
             </Table>
           </TableContainer>
-          <Container className={classes.tableLinks}>
+          <Container className={classes.stateLinks}>
             {states.map((state, i) => {
               return (
                 <>
                   {state.name !== data.name && (
                     <Link
+                      key={state.id}
                       to={`/issues/issues-by-state/${slugify(state.name)}/`}
                     >
                       {state.name}
