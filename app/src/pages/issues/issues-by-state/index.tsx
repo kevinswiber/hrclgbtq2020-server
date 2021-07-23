@@ -1,11 +1,7 @@
 import * as d3 from "d3";
 import React, { ReactElement, useEffect, useState } from "react";
 import { PageProps, graphql, Link } from "gatsby";
-import {
-  BrowserHistory,
-  createBrowserHistory,
-  createMemoryHistory,
-} from "history";
+import { BrowserHistory, createBrowserHistory } from "history";
 import {
   Container,
   FormControl,
